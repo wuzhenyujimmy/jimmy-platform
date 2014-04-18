@@ -1,10 +1,10 @@
 package com.jimmy.dev.entity;
 
-import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.Lob;
+import javax.persistence.OneToOne;
 
-import com.jimmy.base.BaseEntity;
+import com.jimmy.base.common.Article;
+import com.jimmy.base.common.BaseEntity;
 
 @Entity
 public class DevLog extends BaseEntity {
@@ -14,29 +14,17 @@ public class DevLog extends BaseEntity {
      */
     private static final long serialVersionUID = -8638265085543709617L;
 
-    private String title;
-
-    private String content;
+    private Article article;
 
     /* Setter and getter start */
 
-    @Column
-    public String getTitle() {
-        return title;
+    @OneToOne
+    public Article getArticle() {
+        return article;
     }
 
-    @Lob
-    @Column
-    public String getContent() {
-        return content;
-    }
-
-    public void setTitle(String title) {
-        this.title = title;
-    }
-
-    public void setContent(String content) {
-        this.content = content;
+    public void setArticle(Article article) {
+        this.article = article;
     }
 
     /* Setter and getter end */

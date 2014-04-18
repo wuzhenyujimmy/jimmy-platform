@@ -17,7 +17,6 @@ public class UrlPositionUtil {
         urlMap.put("update", "update");
         urlMap.put("add", "add");
         urlMap.put("toAdd", "add");
-
     }
 
     public static String getUrlPosition(HttpServletRequest request) {

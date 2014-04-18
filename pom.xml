@@ -7,7 +7,7 @@
     <version>0.0.1-SNAPSHOT</version>
     <name>jmmy-platform Maven Webapp</name>
     <url>http://maven.apache.org</url>
-	
+
 
     <properties>
         <org.springframework.version>3.2.2.RELEASE</org.springframework.version>
@@ -140,12 +140,19 @@
             <artifactId>standard</artifactId>
             <version>1.1.2</version>
         </dependency>
-        <!-- servlet-api -->
+        <!-- servlet -->
         <dependency>
             <groupId>javax.servlet</groupId>
             <artifactId>servlet-api</artifactId>
             <version>${javax.servlet.version}</version>
         </dependency>
+        <!-- html parser -->
+        <dependency>
+            <groupId>org.htmlparser</groupId>
+            <artifactId>htmlparser</artifactId>
+            <version>2.1</version>
+        </dependency>
+
     </dependencies>
 
     <build>
