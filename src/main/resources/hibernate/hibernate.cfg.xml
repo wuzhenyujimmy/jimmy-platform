@@ -12,6 +12,7 @@
         <property name="jdbc.batch_size">30</property>
         <property name="hbm2ddl.auto">update</property>
         
+        <mapping class="com.jimmy.base.common.Article" />
         <mapping class="com.jimmy.dev.entity.DevLog" />
 
     </session-factory>
