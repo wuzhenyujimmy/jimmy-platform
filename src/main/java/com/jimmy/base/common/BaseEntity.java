@@ -1,4 +1,4 @@
-package com.jimmy.base;
+package com.jimmy.base.common;
 
 import java.io.Serializable;
 

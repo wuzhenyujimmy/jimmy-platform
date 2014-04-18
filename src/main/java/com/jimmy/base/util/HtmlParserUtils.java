@@ -1,6 +1,7 @@
 package com.jimmy.base.util;
 
 import org.htmlparser.Parser;
+import org.htmlparser.beans.StringBean;
 import org.htmlparser.util.ParserException;
 import org.htmlparser.visitors.TextExtractingVisitor;
 
@@ -18,6 +19,14 @@ public class HtmlParserUtils {
         }
 
         return textVisitor.getExtractedText();
+    }
+
+    public static String extractTextFromUrl(String url) {
+        StringBean sb = new StringBean();
+        sb.setLinks(false);
+        sb.setURL(url);
+
+        return sb.toString();
     }
 
 }

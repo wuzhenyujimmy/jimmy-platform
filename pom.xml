@@ -152,6 +152,12 @@
             <artifactId>htmlparser</artifactId>
             <version>2.1</version>
         </dependency>
+        <!-- htmt client -->
+        <dependency>
+            <groupId>org.apache.httpcomponents</groupId>
+            <artifactId>httpclient</artifactId>
+            <version>4.3.2</version>
+        </dependency>
 
     </dependencies>
 
