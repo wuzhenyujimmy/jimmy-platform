@@ -7,6 +7,7 @@
 	.sceditor textarea {
 		width: 800px;
 		height: 400px;
+        font-family: Courier New;
 	}
 </style>
 
@@ -23,5 +24,5 @@
 </script>
 
 <div class="sceditor">
-    <textarea name="bbcode_field"></textarea>
+    <textarea name="articleContent" placeholder="Type content here"></textarea>
 </div>
