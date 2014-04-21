@@ -15,3 +15,16 @@
 </div>
 
 <jsp:include page="sceditor.jsp"></jsp:include>
+
+<script>
+    var article = {
+        getTitle : function() {
+            return $(".article-title").val();
+        },
+        
+        getHtmlContent : function() {
+            return $sceditor.getValue();
+        }
+    }
+
+</script>

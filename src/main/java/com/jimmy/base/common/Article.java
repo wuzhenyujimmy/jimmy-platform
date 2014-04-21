@@ -4,6 +4,8 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Lob;
 
+import com.jimmy.base.util.HtmlParserUtils;
+
 @Entity
 public class Article extends BaseEntity {
     /**
@@ -13,9 +15,15 @@ public class Article extends BaseEntity {
 
     private String title;
 
-    private String htmlContext;
+    private String htmlContent;
     
-    private String textContext;
+    private String textContent;
+
+    public Article(String title, String htmlContent) {
+        this.title = title;
+        this.htmlContent = htmlContent;
+        this.textContent = HtmlParserUtils.parseHtml2Text(htmlContent);
+    }
 
     /* getter and setter start */
 
@@ -26,26 +34,26 @@ public class Article extends BaseEntity {
 
     @Lob
     @Column
-    public String getTextContext() {
-        return textContext;
+    public String getTextContent() {
+        return textContent;
     }
 
     @Lob
     @Column
-    public String getHtmlContext() {
-        return htmlContext;
+    public String getHtmlContent() {
+        return htmlContent;
     }
 
     public void setTitle(String title) {
         this.title = title;
     }
 
-    public void setHtmlContext(String htmlContext) {
-        this.htmlContext = htmlContext;
+    public void setHtmlContent(String htmlContent) {
+        this.htmlContent = htmlContent;
     }
 
-    public void setTextContext(String textContext) {
-        this.textContext = textContext;
+    public void setTextContent(String textContent) {
+        this.textContent = textContent;
     }
 
     /* getter and setter end */

@@ -13,7 +13,7 @@
         <property name="hbm2ddl.auto">update</property>
         
         <mapping class="com.jimmy.base.common.Article" />
-        <mapping class="com.jimmy.dev.entity.DevLog" />
+        <mapping class="com.jimmy.module.dev.DevLog" />
 
     </session-factory>
 </hibernate-configuration>

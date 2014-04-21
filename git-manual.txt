@@ -1,0 +1,140 @@
+git config --global user.name "jimmy"
+git config --global user.email "jaychou19910110@126.com"
+git clone git@github.com:wuzhenyujimmy/jimmy-platform.git
+
+cd C:/Java/git-repo/jimmy-platform/jimmy-platform
+
+cd C:/Java/git-repo/spring-framework/spring-framework
+
+git gui
+
+git branch
+
+git reset --hard
+
+git pull
+
+git checkout dev
+
+git stash
+
+git stash pop
+
+git config --global merge.tool tortoisemerge
+
+git config --global mergetool.tortoiserge.path "C:\Program Files\TortoiseSVN\bin\tortoisemerge.exe"
+
+git config --global mergetool.prompt false
+
+git mergetool
+
+git clean -f
+
+
+
+
+
+// ------------------- branch --------------------
+git checkout -b TK02331
+
+git pull
+
+git branch --set-upstream-to=origin/TK-02331 TK02331
+
+git pull
+
+git checkout master
+
+git pull
+
+git branch --set-upstream-to=origin/TK-02331 TK02331
+
+git checkout TK-02331
+
+git pull
+
+git branch --set-upstream-to=origin/TK-02331 TK02331
+
+git checkout dev
+
+
+git branch -d TK-02296
+
+git branch -r ...
+
+git branch -rd ...
+
+git branch -rd origin/TK...
+
+git branch -r
+
+git branch --list
+
+git config remote.stratus.fetch +refs/heads/*:refs/remotes/stratus/*
+
+==============================================================
+根据stratus 的beta-release建立本地的分支
+
+git config remote.stratus.url git@github.com:stratustech/spc-ui-implementation.git
+git config remote.stratus.fetch +refs/heads/*:refs/remotes/stratus/*
+
+
+
+git config remote.origin.url git@github.com:wuzhenyujimmy/jimmy-platform.git
+git config remote.origin.fetch +refs/heads/*:refs/remotes/origin/*
+
+
+git pull stratus
+
+git checkout beta-relase
+git checkout -b TK-02642-SC499
+
+==============================================================
+
+git rm --cached -r .
+
+git clean -fd
+
+===============================================================
+删除本地分支   git branch -d xxxxx
+               git push origin --delete <branchName>
+
+==============================================================
+恢复删除的本地分支
+git reflog	找到所有的log
+a000d53 HEAD@{0}: checkout: moving from hello to master
+7cb4f30 HEAD@{1}: checkout: moving from master to hello
+a000d53 HEAD@{2}: pull: Fast-forward
+370f7fd HEAD@{3}: checkout: moving from 370f7fd to master
+370f7fd HEAD@{4}: checkout: moving from 370f7fd to 370f7fd
+370f7fd HEAD@{5}: checkout: moving from master to 370f7fd
+370f7fd HEAD@{6}: checkout: moving from TK-viw to master
+7cb4f30 HEAD@{7}: commit: Submit
+2899427 HEAD@{8}: checkout: moving from TK-02652-SC99_for_merge to TK-viw
+4d535e8 HEAD@{9}: commit: TK-02652 Bug fixing | Bug#SC-99 [Flavors] Mandatory fields - Create new flavor successfully when
+370f7fd HEAD@{10}: checkout: moving from master to TK-02652-SC99_for_merge
+370f7fd HEAD@{11}: checkout: moving from TK-02652-SC99 to master
+
+
+找到你要恢复的那个分支的最后一次的操作，比如第7行
+git checkout -b TK-Hello 7cb4f30 即可。
+
+
+
+
+===================== Issue Tracking =========================
+1. Meet error message "Git Pull - There is no tracking information for the current branch." when use "git pull"
+
+   Simply do "git push -u origin master". "origin" is the remote repo, and "master" is the branch you will track.
+
+2. use "ssh-add ~/.ssh/id_rsa" to cache password, meet "can not connection to XXX".
+
+   eval $(ssh-agent)
+
+3. Sometimes, so things above two steps, still can not do pushing without typing password,
+   the reason is :
+   
+   Should do "git config --global remote.origin.url=XXX" in the folder that right contains the projects, other 
+   than in the project folder.
+
+4. 

@@ -1,6 +1,7 @@
-package com.jimmy.dev.entity;
+package com.jimmy.module.dev;
 
 import javax.persistence.CascadeType;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.JoinColumn;
@@ -8,6 +9,7 @@ import javax.persistence.OneToOne;
 
 import com.jimmy.base.common.Article;
 import com.jimmy.base.common.BaseEntity;
+import com.jimmy.base.common.EntityStatus;
 
 @Entity
 public class DevLog extends BaseEntity {
@@ -19,6 +21,13 @@ public class DevLog extends BaseEntity {
 
     private Article article;
 
+    private EntityStatus status;
+
+    public DevLog(Article article, EntityStatus status) {
+        this.article = article;
+        this.status = status;
+    }
+
     /* Setter and getter start */
 
     @OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
@@ -27,8 +36,17 @@ public class DevLog extends BaseEntity {
         return article;
     }
 
+    @Column
+    public EntityStatus getStatus() {
+        return status;
+    }
+
     public void setArticle(Article article) {
         this.article = article;
+    }
+
+    public void setStatus(EntityStatus status) {
+        this.status = status;
     }
 
     /* Setter and getter end */
