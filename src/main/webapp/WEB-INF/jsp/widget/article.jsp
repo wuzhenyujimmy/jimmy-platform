@@ -1,7 +1,8 @@
 <style>
     .article-title {
-        width: 798px;
-        height: 30px;
+        width: 800px;
+        height: 40px;
+        line-height: 40px;
         font-size: 20px;
         font-family: Georgia;
         margin-bottom: 15px;
