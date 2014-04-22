@@ -38,11 +38,12 @@
 </head>
 <body>
 
+    <jsp:forward page="devlog/list"></jsp:forward>
+
     <jsp:include page="WEB-INF/jsp/widget/head.jsp"></jsp:include>
     
     <div>
         <jsp:include page="WEB-INF/jsp/widget/article.jsp"></jsp:include>
-        
     </div>
 </body>
 </html>

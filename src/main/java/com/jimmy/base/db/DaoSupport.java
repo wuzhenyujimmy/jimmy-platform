@@ -14,10 +14,12 @@ import org.springframework.orm.hibernate3.HibernateTemplate;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.jimmy.base.common.BaseEntity;
 import com.jimmy.base.page.Page;
+import com.jimmy.util.CalenderUtils;
 import com.jimmy.util.PropertyUtil;
 
-public class DaoSupport<T> implements BaseDao<T> {
+public class DaoSupport<T extends BaseEntity> implements BaseDao<T> {
 
     protected @Autowired HibernateTemplate hibernateTemplate;
 
@@ -53,6 +55,7 @@ public class DaoSupport<T> implements BaseDao<T> {
 
     @Transactional(rollbackFor = Exception.class)
     public void add(T entity) {
+        entity.setCreateDate(CalenderUtils.getNowString());
         hibernateTemplate.save(entity);
     }
 
@@ -63,6 +66,7 @@ public class DaoSupport<T> implements BaseDao<T> {
 
     @Transactional(rollbackFor = Exception.class)
     public void update(T entity) {
+        entity.setUpdateDate(CalenderUtils.getNowString());
         hibernateTemplate.saveOrUpdate(entity);
     }
 

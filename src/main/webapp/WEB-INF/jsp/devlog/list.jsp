@@ -8,5 +8,18 @@
     </head>
     <body>
         <jsp:include page="../widget/article.jsp"></jsp:include>
+        
+        <input id="add-btn" type="button" value="add">
     </body>
+    
+    <script type="text/javascript">
+        $("#add-btn").click(function(){
+            $.post("devlog/add", {
+            	"title" : article.getTitle(),
+            	"htmlContent" : article.getHtmlContent()
+            }, function(returnData) {
+            	console.log(returnData);
+            });
+        });        
+    </script>
 </html>

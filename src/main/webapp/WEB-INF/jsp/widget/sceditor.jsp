@@ -26,7 +26,7 @@
             
             sceditor.sceditor({
                 plugins: 'xhtml',
-                style: "sceditor/minified/jquery.sceditor.modern.min.css"
+                style: "sceditor/minified/jquery.sceditor.default.min.css"
             });
             
             var sceditorInstance = sceditor.sceditor('instance');

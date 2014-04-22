@@ -73,7 +73,7 @@ git branch --list
 git config remote.stratus.fetch +refs/heads/*:refs/remotes/stratus/*
 
 ==============================================================
-¸ù¾İstratus µÄbeta-release½¨Á¢±¾µØµÄ·ÖÖ§
+æ ¹æ®stratus çš„beta-releaseå»ºç«‹æœ¬åœ°çš„åˆ†æ”¯
 
 git config remote.stratus.url git@github.com:stratustech/spc-ui-implementation.git
 git config remote.stratus.fetch +refs/heads/*:refs/remotes/stratus/*
@@ -96,12 +96,13 @@ git rm --cached -r .
 git clean -fd
 
 ===============================================================
-É¾³ı±¾µØ·ÖÖ§   git branch -d xxxxx
+åˆ é™¤æœ¬åœ°åˆ†æ”¯                      git branch -d xxxxx
                git push origin --delete <branchName>
 
 ==============================================================
-»Ö¸´É¾³ıµÄ±¾µØ·ÖÖ§
-git reflog	ÕÒµ½ËùÓĞµÄlog
+
+æ¢å¤åˆ é™¤çš„æœ¬åœ°åˆ†æ”¯
+git reflog	æ‰¾åˆ°æ‰€æœ‰çš„log
 a000d53 HEAD@{0}: checkout: moving from hello to master
 7cb4f30 HEAD@{1}: checkout: moving from master to hello
 a000d53 HEAD@{2}: pull: Fast-forward
@@ -116,8 +117,8 @@ a000d53 HEAD@{2}: pull: Fast-forward
 370f7fd HEAD@{11}: checkout: moving from TK-02652-SC99 to master
 
 
-ÕÒµ½ÄãÒª»Ö¸´µÄÄÇ¸ö·ÖÖ§µÄ×îºóÒ»´ÎµÄ²Ù×÷£¬±ÈÈçµÚ7ĞĞ
-git checkout -b TK-Hello 7cb4f30 ¼´¿É¡£
+æ‰¾åˆ°ä½ è¦æ¢å¤çš„é‚£ä¸ªåˆ†æ”¯çš„æœ€åä¸€æ¬¡çš„æ“ä½œï¼Œæ¯”å¦‚ç¬¬7è¡Œ
+git checkout -b TK-Hello 7cb4f30 å³å¯ã€‚
 
 
 

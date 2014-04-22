@@ -10,7 +10,6 @@
 
 </style>
 
-
 <div>
     <input class="article-title" placeholder="Type a title here.">
 </div>
@@ -24,8 +23,7 @@
         },
         
         getHtmlContent : function() {
-            return $sceditor.getValue();
+            return sceditor.getValue();
         }
     }
-
 </script>

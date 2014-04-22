@@ -18,6 +18,8 @@ public class HtmlParserUtils {
             LogUtils.logExceptionMessage(e);
         }
 
+        System.out.println(textVisitor.getExtractedText());
+
         return textVisitor.getExtractedText();
     }
 
