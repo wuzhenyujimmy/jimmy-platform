@@ -32,6 +32,7 @@ public class MD5 {
         } catch (Exception ex) {
 
         }
+
         return resultString;
     }
 }

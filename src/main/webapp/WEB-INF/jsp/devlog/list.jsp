@@ -5,21 +5,19 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>development log</title>
+        
+        <link rel="stylesheet" href="uikit-2.6.0/css/uikit.gradient.min.css" />
+        
+        <script src="jquery/jquery-1.11.0.min.js"></script>
+        <script src="uikit-2.6.0/js/uikit.min.js"></script>
     </head>
     <body>
-        <jsp:include page="../widget/article.jsp"></jsp:include>
         
-        <input id="add-btn" type="button" value="add">
+
+
+        <jsp:include page="../widget/slider.jsp"></jsp:include>
+
     </body>
     
-    <script type="text/javascript">
-        $("#add-btn").click(function(){
-            $.post("devlog/add", {
-            	"title" : article.getTitle(),
-            	"htmlContent" : article.getHtmlContent()
-            }, function(returnData) {
-            	console.log(returnData);
-            });
-        });        
-    </script>
+    
 </html>

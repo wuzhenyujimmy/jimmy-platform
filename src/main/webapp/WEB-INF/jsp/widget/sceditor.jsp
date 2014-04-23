@@ -1,6 +1,5 @@
 <link rel="stylesheet" href="sceditor/minified/themes/default.min.css" type="text/css" media="all" />
 
-<script src="jquery/jquery.min.js"></script>
 <script src="sceditor/minified/jquery.sceditor.bbcode.min.js"></script>
 
 <style>            
