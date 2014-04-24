@@ -2,7 +2,9 @@
 <web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://java.sun.com/xml/ns/javaee"
     xmlns:web="http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd" xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd"
     version="3.0">
+    
     <display-name>/</display-name>
+    
     <context-param>
         <param-name>contextConfigLocation</param-name>
         <param-value>classpath:spring/applicationContext.xml</param-value>
@@ -51,6 +53,15 @@
         <servlet-name>jimmy-platform</servlet-name>
         <url-pattern>/</url-pattern>
     </servlet-mapping>
+    
+    <!-- My jsp taglib -->
+    <jsp-config>
+        <taglib>
+            <taglib-uri>flatui-button</taglib-uri>
+            <taglib-location>/WEB-INF/taglib/flatui-button.tld</taglib-location>
+        </taglib>
+    </jsp-config>
+    
     <welcome-file-list>
         <welcome-file>index.jsp</welcome-file>
     </welcome-file-list>
