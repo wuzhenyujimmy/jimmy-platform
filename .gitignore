@@ -36,3 +36,6 @@ out
 test-output
 atlassian-ide-plugin.xml
 .gradletasknamecache
+
+rebel.xml
+rebel-remote.xml

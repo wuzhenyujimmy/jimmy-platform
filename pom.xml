@@ -128,12 +128,6 @@
             <artifactId>gson</artifactId>
             <version>2.2.2</version>
         </dependency>
-        <!-- jsp-api -->
-        <dependency>
-            <groupId>tomcat</groupId>
-            <artifactId>jsp-api</artifactId>
-            <version>5.5.23</version>
-        </dependency>
         <!-- jstl -->
         <dependency>
             <groupId>javax.servlet.jsp.jstl</groupId>
@@ -146,11 +140,19 @@
             <artifactId>standard</artifactId>
             <version>1.1.2</version>
         </dependency>
+        <!-- jsp-api -->
+        <dependency>
+            <groupId>javax.servlet</groupId>
+            <artifactId>jsp-api</artifactId>
+            <version>2.0</version>
+            <scope>provided</scope>
+        </dependency>
         <!-- servlet -->
         <dependency>
             <groupId>javax.servlet</groupId>
             <artifactId>servlet-api</artifactId>
             <version>${javax.servlet.version}</version>
+            <scope>provided</scope>
         </dependency>
         <!-- html parser -->
         <dependency>
