@@ -1,33 +1,31 @@
 package com.jimmy.web.taglib;
 
-import java.io.IOException;
 
-import javax.servlet.jsp.JspException;
-import javax.servlet.jsp.JspWriter;
-import javax.servlet.jsp.tagext.SimpleTagSupport;
-
-import com.jimmy.web.widget.Button;
-
-public class FlatuiButtonTag extends SimpleTagSupport {
+public class FlatuiButtonTag extends BaseFlatUITag {
 
     private String value = "Search";
 
     private boolean isWide = false;
 
-    /*
-     * The value for type can be: normal, danger, gray, danger, info, success,
-     * inverse
-     */
     private String type = "normal";
 
     @Override
-    public void doTag() throws JspException, IOException {
+    public String getHtmlContent() {
+        String className = "btn mrm";
 
-        JspWriter out = getJspContext().getOut();
+        if (isWide) {
+            className += " btn-wide";
+        }
 
-        Button button = new Button(value, isWide, type);
+        if ("normal".equals(type)) {
+            className += " btn-primary";
+        } else if ("gray".equals(type)) {
+            className += " btn-default";
+        } else {
+            className += (" btn-" + type);
+        }
 
-        out.print(button.getHtmlContent());
+        return "<button class='" + className + "'>" + value + "</button>";
     }
 
     public void setValue(String value) {
