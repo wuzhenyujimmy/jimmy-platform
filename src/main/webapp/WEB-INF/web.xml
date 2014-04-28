@@ -57,8 +57,8 @@
     <!-- My jsp taglib -->
     <jsp-config>
         <taglib>
-            <taglib-uri>flatui-button</taglib-uri>
-            <taglib-location>/WEB-INF/taglib/flatui-button.tld</taglib-location>
+            <taglib-uri>http://www.jimmy.com/jsp/ui/flatui</taglib-uri>
+            <taglib-location>/WEB-INF/taglib/flatui.tld</taglib-location>
         </taglib>
     </jsp-config>
     

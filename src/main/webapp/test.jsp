@@ -1,7 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
     
-<%@ taglib uri="flatui-button" prefix="flatui" %>   
+<%@ taglib uri="http://www.jimmy.com/jsp/ui/flatui" prefix="flatui" %>
+<%@ taglib uri="http://www.springframework.org/tags" prefix="spring" %>
  
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
@@ -27,7 +28,9 @@
     <body>
     
         <flatui:button value="hello"/>
-    
+        <flatui:button value="name" isWide="true"/>
+        <flatui:button value="world" type="danger" isWide="true"/>
+        
         <!-- Load JS here for greater good =============================-->
         <script src="Flat-UI-master/js/jquery-1.8.3.min.js"></script>
         <script src="Flat-UI-master/js/jquery-ui-1.10.3.custom.min.js"></script>
@@ -41,6 +44,5 @@
         <script src="Flat-UI-master/js/jquery.placeholder.js"></script>
         
     </body>
-    
     
 </html>
