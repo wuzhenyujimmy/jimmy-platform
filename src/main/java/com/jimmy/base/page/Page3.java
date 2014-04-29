@@ -2,7 +2,7 @@ package com.jimmy.base.page;
 
 import java.util.List;
 
-public class Page<T> {
+public class Page3<T> {
     /** max record number in one page **/
     private int maxResult = 15;
     /** max page index to show on page **/
@@ -23,16 +23,16 @@ public class Page<T> {
     /** total page number **/
     private int totalPageNumber = 0;
 
-    public Page() {
+    public Page3() {
         setFirstResult();
     }
 
-    public Page(int currentPageNumber) {
+    public Page3(int currentPageNumber) {
         this.currentPageNumber = currentPageNumber;
         setFirstResult();
     }
 
-    public Page(int currentPageNumber, int maxResult) {
+    public Page3(int currentPageNumber, int maxResult) {
         this.currentPageNumber = currentPageNumber;
         this.maxResult = maxResult;
         setFirstResult();

@@ -25,14 +25,3 @@
     <jsp:include page="article.jsp"></jsp:include>
 
 </div>
-
-<script type="text/javascript">
-    $(".slider #slider-submit-btn").click(function(){
-        $.post("devlog/add", {
-            "title" : article.getTitle(),
-            "htmlContent" : article.getHtmlContent()
-        }, function(returnData) {
-            console.log(returnData);
-        });
-    });        
-</script>

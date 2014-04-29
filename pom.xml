@@ -18,6 +18,7 @@
         <finalName>jmmy-platform</finalName>
     </properties>
 
+
     <dependencies>
         <!-- spring -->
         <dependency>

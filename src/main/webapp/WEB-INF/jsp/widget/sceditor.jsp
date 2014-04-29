@@ -1,10 +1,11 @@
 <link rel="stylesheet" href="sceditor/minified/themes/default.min.css" type="text/css" media="all" />
+<link rel="stylesheet" href="css/highlight.css" type="text/css" />
 
 <script src="sceditor/minified/jquery.sceditor.bbcode.min.js"></script>
 
 <style>            
     .sceditor textarea {
-        width: 804px;
+        width: 800px;
         height: 400px;
         font-family: Courier New;
     }
