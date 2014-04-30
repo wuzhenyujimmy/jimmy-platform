@@ -1,6 +1,6 @@
 <style>
     .article-title {
-        width: 100%;
+        width: 95%;
         height: 40px;
         line-height: 40px;
         font-size: 20px;

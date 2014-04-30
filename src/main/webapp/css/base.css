@@ -2,6 +2,46 @@ body, button, input, select, textarea {
     font: 14px/1.5 hiragino sans gb,microsoft yahei,simsun;
 }
 
+body {
+    background-color: #F9F9F9;
+}
+
+header, footer {
+    height: 30px;
+    line-height: 30px;
+    background-color: #666666;
+    color: #FFFFFF;
+}
+
 html, body {
     height: 100%;
 }
+
+.main {
+    padding: 0px 15px;
+    min-height: calc(100% - 60px);
+    position: relative;
+    width: 100%;
+}
+
+.main .bread-crumb{
+    height: 50px;
+}
+
+.main > .left, .main > .content {
+    float: left;
+}
+
+.main > .left {
+    background-color: #EAEAEA;
+    width: 220px;
+}
+
+.main > .content {
+    border: 1px solid #EEEEEE;
+    background-color: #FFFFFF;
+    width: calc(100% - 230px);
+    margin-left: 10px;
+    position: relative;
+}
+

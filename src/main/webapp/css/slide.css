@@ -1,0 +1,25 @@
+@CHARSET "UTF-8";
+
+.slider {
+    width: 0px;
+    display: none;
+    position: absolute;
+    top: 0px;
+    right: 0px;
+    border: 2px solid black;
+    overflow: scroll;
+    height: 100%;
+    background-color: #FFFFFF;
+}
+
+.slider > div {
+    padding: 0px 10px;
+}
+
+.form-header,.form-item {
+    width: 100%;
+}
+
+.form-header input,.form-header div,.form-item input,.form-header div {
+    width: 95%;
+}

@@ -8,68 +8,136 @@
         <link rel="stylesheet" href="css/reset.css" type="text/css" media="all" />
         <link rel="stylesheet" href="css/base.css" type="text/css" media="all" />
         
+        <link rel="stylesheet" href="css/slide.css" type="text/css" media="all" />
+        
         <script src="jquery/jquery-1.11.0.min.js"></script>
-        
-        <style type="text/css">
-        
-            .content {
-                width: 1200px;
-                min-height: 100%;
-                margin: 0px auto;
-                background: #CACACA;
-                position: relative;
-            }
-            
-            .slider {
-                width: 0px;
-                float: right;
-                height: 100%;
-            }
-            
-            html, body {
-                height: 100%;
-            }
-            
-            .form-header,
-            .form-item {
-                width: 100%;
-            }
-            
-            .form-header input, .form-header div,
-            .form-item input, .form-header div {
-                width: 95%;
-            }
-            
-        </style>
-        
-        
         
     </head>
     <body>
+    
+        <header>
+            <nav>
+                This is header
+            </nav>
+        </header>
         
-        <div class="content">
+        <div class="main">
         
-            <button id="showSlider">Show</button>
-            <button id="hideSlider">Hide</button>
-        
-            <div class="slider">
-                <div class="form-header">
-                    <input id="slider-title" readonly="readonly" value="Add new article">
-                    <input id="slider-submit-btn" type="button" value="Save">
-                </div>
-                <jsp:include page="../widget/article.jsp"></jsp:include>
+            <div class="bread-crumb">
+                username : jimmy.wu
             </div>
+        
+            <div class="left">
+                <button id="showSlider">Show</button>
+                <button id="hideSlider">Hide</button>
+                hello world, this is a beautiful place. You can come here later.
+                hello world, this is a beautiful place. You can come here later.
+                hello world, this is a beautiful place. You can come here later.
+                hello world, this is a beautiful place. You can come here later.
+                hello world, this is a beautiful place. You can come here later.
+                hello world, this is a beautiful place. You can come here later.
+                hello world, this is a beautiful place. You can come here later.
+                hello world, this is a beautiful place. You can come here later.
+                hello world, this is a beautiful place. You can come here later.
+                hello world, this is a beautiful place. You can come here later.
+                hello world, this is a beautiful place. You can come here later.
+                hello world, this is a beautiful place. You can come here later.
+                hello world, this is a beautiful place. You can come here later.
+                hello world, this is a beautiful place. You can come here later.
+                hello world, this is a beautiful place. You can come here later.
+                hello world, this is a beautiful place. You can come here later.
+                hello world, this is a beautiful place. You can come here later.
+                hello world, this is a beautiful place. You can come here later.
+            </div>
+            
+            <div class="content">
+            
+                hello<br>
+                hello<br>
+                hello<br>
+                hello<br>
+                hello<br>
+                hello<br>
+                hello<br>
+                hello<br>
+                hello<br>
+                hello<br>
+                hello<br>
+                hello<br>
+                hello<br>
+                hello<br>
+                hello<br>
+                hello<br>
+                hello<br>
+                hello<br>
+                hello<br>
+                hello<br>
+                hello<br>
+                hello<br>
+                hello<br>
+                hello<br>
+                hello<br>
+                hello<br>
+                hello<br>
+                hello<br>
+                hello<br>
+                hello<br>
+                hello<br>
+                hello<br>
+                hello<br>
+                hello<br>
+                hello<br>
+                hello<br>
+                hello<br>
+                hello<br>
+                hello<br>
+                hello<br>
+                hello<br>
+                hello<br>
+                hello<br>
+                hello<br>
+                hello<br>
+                hello<br>
+                hello<br>
+                hello<br>
+                hello<br>
+                hello<br>
+                hello<br>
+                hello<br>
+                hello<br>
+                hello<br>
+            
+                <div class="slider">
+                    <div class="form-header">
+                        <input id="slider-title" readonly="readonly" value="Add new article">
+                        <button id="slider-submit-btn" type="button">Save</button>
+                    </div>
+                    <jsp:include page="../widget/article.jsp"></jsp:include>
+                </div>
+            </div>
+            
+            <br style="clear:both"/>
+        
         </div>
+        
+        <footer>
+            This is footer
+        </footer>
+        
+        <script type="text/javascript" src="js/common/slider.js"></script>
         
         <script type="text/javascript">
         
-        	$("#showSlider").click(function() {
-        	    
-        	    $(".slider").animate({
-        	        width: "80%"
-        	    });
-        	    
-        	});
+            $("#showSlider").click(function() {
+                slider.show();
+                
+            });
+            
+            $("#hideSlider").click(function() {
+                
+                slider.hide();
+                
+            });
         
         </script>
     </body>

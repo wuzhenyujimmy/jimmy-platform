@@ -5,8 +5,8 @@
 
 <style>            
     .sceditor textarea {
-        width: 800px;
-        height: 400px;
+        width: 120%;
+        height: 416px;
         font-family: Courier New;
     }
 </style>
