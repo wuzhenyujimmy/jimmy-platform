@@ -90,7 +90,7 @@
             <artifactId>hibernate-annotations</artifactId>
             <version>${org.hibernate.version}</version>
         </dependency>
-
+        
         <!-- c3p0 -->
         <dependency>
             <groupId>com.mchange</groupId>

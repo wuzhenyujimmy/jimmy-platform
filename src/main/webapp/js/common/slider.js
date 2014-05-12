@@ -15,9 +15,8 @@ slider = {
         $slide.animate({
             width: slider.width
         }, function() {
-            $(".sceditor-container").width("96%");
-            slider.frame().width("99%");
-            console.log(slider.frame()[0]);
+            $(".sceditor-container").width("100%");
+            slider.frame().width("100%");
         });
         
     },

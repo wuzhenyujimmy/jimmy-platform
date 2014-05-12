@@ -1,0 +1,82 @@
+.radius {
+    -webkit-border-radius: 5px 5px 5px 5px;
+    -moz-border-radius: 5px 5px 5px 5px;
+    border-radius: 5px 5px 5px 5px;
+}
+
+.shadow {
+    box-shadow: 0 0.5em 1em rgba(100, 100, 100, 1);
+}
+
+/***************  Button start ****************/
+
+.btn {
+    cursor: pointer;
+    padding: 0px 10px;
+    color: #FFFFFF;
+    min-width: 80px;
+    display: inline-block;
+    text-align: center;
+    font-size: 18px;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    -o-user-select: none;
+}
+
+.btn-big {
+    height: 50px;
+    line-height: 50px;
+}
+
+.btn-middle {
+    height: 40px;
+    line-height: 40px;
+}
+
+.btn-min {
+    height: 30px;
+    line-height: 30px;
+}
+
+.btn-normal {
+    background-color: #428bca;
+    border-color: #357ebd;
+}
+
+.btn-normal:HOVER {
+    background-color: #1A5D98;
+    border-color: #284866;
+}
+
+.btn-danger {
+    background-color: #d2322d;
+    border-color: #ac2925;
+}
+
+.btn-danger:HOVER {
+    background-color: #BB1A16;
+    border-color: #6B2C26;
+}
+
+.btn-warning {
+    background-color: #DC8A17;
+    border-color: #C37303;
+}
+
+.btn-warning:HOVER {
+    background-color: #428bca;
+    border-color: #357ebd;
+}
+
+.btn-gray {
+    background-color: #bdc3c7;
+    border-color: #bdc3c7;
+}
+
+.btn-gray:HOVER {
+    background-color: #B2B7B7;
+    border-color: #A2A5A5;
+}
+
+/***************  Button end ****************/

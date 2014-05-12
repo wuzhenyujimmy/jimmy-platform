@@ -5,7 +5,7 @@
 
 <style>            
     .sceditor textarea {
-        width: 120%;
+        width: 1000px;
         height: 416px;
         font-family: Courier New;
     }
@@ -16,7 +16,6 @@
 </div>
 
 <script>
-
     var sceditor;
 
     $(document).ready(function() {

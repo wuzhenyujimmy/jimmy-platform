@@ -6,9 +6,9 @@
     position: absolute;
     top: 0px;
     right: 0px;
-    border: 2px solid black;
+    border: 2px solid #1ABC9C;
     overflow: scroll;
-    height: 100%;
+    height: calc(100% - 10px);
     background-color: #FFFFFF;
 }
 
@@ -16,10 +16,25 @@
     padding: 0px 10px;
 }
 
-.form-header,.form-item {
-    width: 100%;
+.slider-header input {
+    width: 60%;
+    height: 40px;
 }
 
-.form-header input,.form-header div,.form-item input,.form-header div {
-    width: 95%;
+.slider .slider-header {
+    height: 60px;
+    line-height: 40px;
+}
+
+.slider-title {
+    border: none;
+    font-weight: bold;
+    font-size: 24px;
+    float: left;
+    margin-top: 10px;
+}
+
+.slider-header .btn {
+    float: right;
+    margin-top: 10px;
 }

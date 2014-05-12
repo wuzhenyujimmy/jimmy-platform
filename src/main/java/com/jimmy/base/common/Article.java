@@ -15,14 +15,41 @@ public class Article extends BaseEntity {
 
     private String title;
 
+    /**
+     * Url of blog forwarded from other blog system.
+     */
+    private String url;
+
     private String htmlContent;
-    
+
     private String textContent;
 
+    private boolean forward;
+
+    /**
+     * Foward blog
+     * 
+     * @param title
+     * @param url
+     * @param forward
+     */
+    public Article(String title, String url, boolean forward) {
+        this.title = title;
+        this.url = url;
+        this.forward = true;
+    }
+
+    /**
+     * Create blog
+     * 
+     * @param title
+     * @param htmlContent
+     */
     public Article(String title, String htmlContent) {
         this.title = title;
         this.htmlContent = htmlContent;
         this.textContent = HtmlParserUtils.parseHtml2Text(htmlContent);
+        this.forward = false;
     }
 
     /* getter and setter start */
@@ -30,6 +57,11 @@ public class Article extends BaseEntity {
     @Column
     public String getTitle() {
         return title;
+    }
+
+    @Column
+    public String getUrl() {
+        return url;
     }
 
     @Lob
@@ -44,8 +76,17 @@ public class Article extends BaseEntity {
         return htmlContent;
     }
 
+    @Column
+    public boolean getForward() {
+        return forward;
+    }
+
     public void setTitle(String title) {
         this.title = title;
+    }
+
+    public void setUrl(String url) {
+        this.url = url;
     }
 
     public void setHtmlContent(String htmlContent) {
@@ -56,6 +97,9 @@ public class Article extends BaseEntity {
         this.textContent = textContent;
     }
 
-    /* getter and setter end */
+    public void setForward(boolean forward) {
+        this.forward = forward;
+    }
 
+    /* getter and setter end */
 }

@@ -1,5 +1,6 @@
 body, button, input, select, textarea {
     font: 14px/1.5 hiragino sans gb,microsoft yahei,simsun;
+    font-family: "Lato", Helvetica, Arial, sans-serif;
 }
 
 body {
@@ -21,7 +22,7 @@ html, body {
     padding: 0px 15px;
     min-height: calc(100% - 60px);
     position: relative;
-    width: 100%;
+    width: calc(100% - 30px);
 }
 
 .main .bread-crumb{
@@ -40,8 +41,9 @@ html, body {
 .main > .content {
     border: 1px solid #EEEEEE;
     background-color: #FFFFFF;
-    width: calc(100% - 230px);
+    width: calc(100% - 232px);
     margin-left: 10px;
     position: relative;
 }
+
 

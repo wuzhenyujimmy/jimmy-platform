@@ -9,7 +9,6 @@ public class HtmlParserUtils {
 
     private static TextExtractingVisitor textVisitor = new TextExtractingVisitor();
 
-
     public static String parseHtml2Text(String html) {
         try {
             Parser htmlParser = new Parser(html);

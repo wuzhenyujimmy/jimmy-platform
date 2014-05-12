@@ -1,4 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<jsp:include page="../widget/taglib.jsp"></jsp:include>
+
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
     <head>
@@ -9,6 +11,7 @@
         <link rel="stylesheet" href="css/base.css" type="text/css" media="all" />
         
         <link rel="stylesheet" href="css/slide.css" type="text/css" media="all" />
+        <link rel="stylesheet" href="css/custom.css" type="text/css" media="all" />
         
         <script src="jquery/jquery-1.11.0.min.js"></script>
         
@@ -52,20 +55,10 @@
             
             <div class="content">
             
-                hello<br>
-                hello<br>
-                hello<br>
-                hello<br>
-                hello<br>
-                hello<br>
-                hello<br>
-                hello<br>
-                hello<br>
-                hello<br>
-                hello<br>
-                hello<br>
-                hello<br>
-                hello<br>
+                <c:if >
+                
+                </c:if>
+            
                 hello<br>
                 hello<br>
                 hello<br>
@@ -107,10 +100,10 @@
                 hello<br>
                 hello<br>
             
-                <div class="slider">
-                    <div class="form-header">
-                        <input id="slider-title" readonly="readonly" value="Add new article">
-                        <button id="slider-submit-btn" type="button">Save</button>
+                <div class="slider radius shadow">
+                    <div class="slider-header">
+                        <input class="slider-title" readonly="readonly" value="Add new article">
+                        <div class="btn btn-normal btn-middle radius" type="button">Save</div>
                     </div>
                     <jsp:include page="../widget/article.jsp"></jsp:include>
                 </div>
@@ -130,13 +123,10 @@
         
             $("#showSlider").click(function() {
                 slider.show();
-                
             });
             
             $("#hideSlider").click(function() {
-                
                 slider.hide();
-                
             });
         
         </script>
