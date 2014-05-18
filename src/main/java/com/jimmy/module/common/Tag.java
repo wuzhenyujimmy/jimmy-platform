@@ -12,7 +12,7 @@ import javax.persistence.OneToMany;
 import com.jimmy.base.common.BaseEntity;
 
 @Entity
-public class Group extends BaseEntity {
+public class Tag extends BaseEntity {
 
     /**
      * 
@@ -21,9 +21,9 @@ public class Group extends BaseEntity {
 
     private String name;
 
-    private Group parent;
+    private Tag parent;
 
-    private Set<Group> children;
+    private Set<Tag> children;
 
     /* Getter and Setter start */
 
@@ -34,12 +34,12 @@ public class Group extends BaseEntity {
 
     @ManyToOne
     @JoinColumn
-    public Group getParent() {
+    public Tag getParent() {
         return parent;
     }
 
     @OneToMany(fetch = FetchType.LAZY)
-    public Set<Group> getChildren() {
+    public Set<Tag> getChildren() {
         return children;
     }
 
@@ -47,11 +47,11 @@ public class Group extends BaseEntity {
         this.name = name;
     }
 
-    public void setParent(Group parent) {
+    public void setParent(Tag parent) {
         this.parent = parent;
     }
 
-    public void setChildren(Set<Group> children) {
+    public void setChildren(Set<Tag> children) {
         this.children = children;
     }
 

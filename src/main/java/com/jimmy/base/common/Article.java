@@ -26,6 +26,10 @@ public class Article extends BaseEntity {
 
     private boolean forward;
 
+    public Article() {
+
+    }
+
     /**
      * Foward blog
      * 

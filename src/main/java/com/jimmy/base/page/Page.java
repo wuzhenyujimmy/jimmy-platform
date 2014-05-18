@@ -4,35 +4,48 @@ import java.util.List;
 
 public class Page<T> {
     /** max record number in one page **/
-    private int recordCountInPage = 15;
+    private int recordCountInPage = 10;
+
     /** max page index to show on page **/
     private int totalPageIndexCountToShow = 10;
+
     /** current page index **/
     private int currentPageIndex = 1;
 
-    /** entitys **/
-    private List<T> entities;
     /** the first record' index that will be query from **/
     private int firstRecordQueryFrom = 0;
+
     /** pagination's start index **/
     private int pageIndexFrom = 1;
+
     /** pagination's finish index **/
     private int pageIndexTo = 1;
+
     /** total record number **/
     private int totalRecordCount = 0;
+
     /** total page number **/
     private int totalPageCount = 0;
 
-    public Page() {
+    /** entities **/
+    private List<T> entities;
+
+    /** This is the pagination base url */
+    private String baseUrl;
+
+    public Page(String baseUrl) {
+        this.baseUrl = baseUrl;
         setFirstRecordQueryFrom();
     }
 
-    public Page(int currentPageIndex) {
+    public Page(String baseUrl, int currentPageIndex) {
+        this.baseUrl = baseUrl;
         this.currentPageIndex = currentPageIndex;
         setFirstRecordQueryFrom();
     }
 
-    public Page(int currentPageIndex, int recordCountInPage) {
+    public Page(String baseUrl, int currentPageIndex, int recordCountInPage) {
+        this.baseUrl = baseUrl;
         this.currentPageIndex = currentPageIndex;
         this.recordCountInPage = recordCountInPage;
         setFirstRecordQueryFrom();
@@ -57,8 +70,7 @@ public class Page<T> {
             if (currentPageIndex + half < getTotalPageCount()) {
                 pageIndexFrom = currentPageIndex - half;
             } else {
-                pageIndexFrom = getTotalPageCount()
-                        - totalPageIndexCountToShow + 1;
+                pageIndexFrom = getTotalPageCount() - totalPageIndexCountToShow + 1;
             }
         }
         return pageIndexFrom;
@@ -85,6 +97,10 @@ public class Page<T> {
         return entities;
     }
 
+    public String getBaseUrl() {
+        return baseUrl;
+    }
+
     public void setTotalPageIndexCountToShow(int totalPageIndexCountToShow) {
         this.totalPageIndexCountToShow = totalPageIndexCountToShow;
     }
@@ -106,8 +122,7 @@ public class Page<T> {
     }
 
     public void setFirstRecordQueryFrom() {
-        this.firstRecordQueryFrom = (this.currentPageIndex - 1)
-                * recordCountInPage;
+        this.firstRecordQueryFrom = (this.currentPageIndex - 1) * recordCountInPage;
     }
 
     public void setEntities(List<T> entities) {
@@ -116,6 +131,10 @@ public class Page<T> {
 
     public void setRecordCountInPage(int recordCountInPage) {
         this.recordCountInPage = recordCountInPage;
+    }
+
+    public void setBaseUrl(String baseUrl) {
+        this.baseUrl = baseUrl;
     }
 
     /* getter and setter end */

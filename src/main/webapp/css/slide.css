@@ -24,6 +24,7 @@
 .slider .slider-header {
     height: 60px;
     line-height: 40px;
+    padding-right: 6px;
 }
 
 .slider-title {

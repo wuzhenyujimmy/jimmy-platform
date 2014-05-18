@@ -6,7 +6,7 @@ import java.util.List;
 
 import org.hibernate.Query;
 
-import com.jimmy.base.page.Page3;
+import com.jimmy.base.page.Page;
 
 public interface BaseDao<T> {
     /**
@@ -86,7 +86,7 @@ public interface BaseDao<T> {
      *            the object to store the query result
      * @return the result queried
      */
-    Page3<T> getPagingResult(Page3<T> page);
+    Page<T> getPagingResult(Page<T> page);
 
     /**
      * query and show them by pagination
@@ -97,7 +97,7 @@ public interface BaseDao<T> {
      *            the hql started from where but no where included
      * @return the result queried
      */
-    Page3<T> getPagingResult(Page3<T> page, String whereSql);
+    Page<T> getPagingResult(Page<T> page, String whereSql);
 
     /**
      * query and show them by pagination
@@ -110,7 +110,7 @@ public interface BaseDao<T> {
      *            order by
      * @return the result queried
      */
-    Page3<T> getPagingResult(Page3<T> page, String whereSql, LinkedHashMap<String, String> orderby);
+    Page<T> getPagingResult(Page<T> page, String whereSql, LinkedHashMap<String, String> orderby);
 
     /**
      * query and show them by pagination
@@ -123,7 +123,7 @@ public interface BaseDao<T> {
      *            the parameters in hql
      * @return the result queried
      */
-    Page3<T> getPagingResult(Page3<T> page, String whereSql, Object[] queryParams);
+    Page<T> getPagingResult(Page<T> page, String whereSql, Object[] queryParams);
 
     /**
      * query and show them by pagination
@@ -134,7 +134,7 @@ public interface BaseDao<T> {
      *            order by
      * @return the result queried
      */
-    Page3<T> getPagingResult(Page3<T> page, LinkedHashMap<String, String> orderby);
+    Page<T> getPagingResult(Page<T> page, LinkedHashMap<String, String> orderby);
 
     /**
      * query and show them by pagination
@@ -149,6 +149,6 @@ public interface BaseDao<T> {
      *            order by
      * @return the result queried
      */
-    Page3<T> getPagingResult(Page3<T> page, String whereSql, Object[] queryParams, LinkedHashMap<String, String> orderby);
+    Page<T> getPagingResult(Page<T> page, String whereSql, Object[] queryParams, LinkedHashMap<String, String> orderby);
 
 }

@@ -10,7 +10,7 @@ import javax.persistence.OneToOne;
 import com.jimmy.base.common.Article;
 import com.jimmy.base.common.BaseEntity;
 import com.jimmy.base.common.EntityStatus;
-import com.jimmy.module.common.Group;
+import com.jimmy.module.common.Tag;
 
 @Entity
 public class DevLog extends BaseEntity {
@@ -24,11 +24,20 @@ public class DevLog extends BaseEntity {
 
     private EntityStatus status;
 
-    private Group group;
+    private Tag tag;
+
+    public DevLog() {
+
+    }
 
     public DevLog(Article article, EntityStatus status) {
         this.article = article;
         this.status = status;
+    }
+
+    public DevLog(String title, String htmlContent) {
+        this.article = new Article(title, htmlContent);
+        this.status = EntityStatus.NEW;
     }
 
     /* Setter and getter start */
@@ -44,9 +53,10 @@ public class DevLog extends BaseEntity {
         return status;
     }
 
+    @OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     @JoinColumn
-    public Group getGroup() {
-        return group;
+    public Tag getTag() {
+        return tag;
     }
 
     public void setArticle(Article article) {
@@ -57,8 +67,8 @@ public class DevLog extends BaseEntity {
         this.status = status;
     }
 
-    public void setGroup(Group group) {
-        this.group = group;
+    public void setTag(Tag tag) {
+        this.tag = tag;
     }
 
     /* Setter and getter end */

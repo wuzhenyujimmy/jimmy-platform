@@ -32,5 +32,18 @@ slider = {
     frame: function() {
         return $(document.getElementsByTagName("iframe")[0]);
     }
-        
+    
 };
+
+// Add click function to slider "Cancel" button and "Save" button
+$(function() {
+    
+    $(".slider .btn-normal").click(function(){
+        slider.hide();
+    });
+    
+    $(".slider .btn-cancel").click(function(){
+        slider.hide();
+    });
+    
+});

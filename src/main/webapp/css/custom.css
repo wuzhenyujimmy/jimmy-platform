@@ -22,6 +22,7 @@
     -moz-user-select: none;
     -ms-user-select: none;
     -o-user-select: none;
+    margin-left: 10px;
 }
 
 .btn-big {
@@ -75,6 +76,16 @@
 }
 
 .btn-gray:HOVER {
+    background-color: #B2B7B7;
+    border-color: #A2A5A5;
+}
+
+.btn-cancel {
+    background-color: #bdc3c7;
+    border-color: #bdc3c7;
+}
+
+.btn-cancel:HOVER {
     background-color: #B2B7B7;
     border-color: #A2A5A5;
 }

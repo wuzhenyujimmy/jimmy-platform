@@ -15,7 +15,7 @@ import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.jimmy.base.common.BaseEntity;
-import com.jimmy.base.page.Page3;
+import com.jimmy.base.page.Page;
 import com.jimmy.util.CalenderUtils;
 import com.jimmy.util.PropertyUtil;
 
@@ -90,53 +90,55 @@ public class DaoSupport<T extends BaseEntity> implements BaseDao<T> {
     }
 
     @Transactional(propagation = Propagation.NOT_SUPPORTED, readOnly = true)
-    public Page3<T> getPagingResult(Page3<T> page) {
+    public Page<T> getPagingResult(Page<T> page) {
         return getPagingResult(page, null, null, null);
     }
 
     @Transactional(propagation = Propagation.NOT_SUPPORTED, readOnly = true)
-    public Page3<T> getPagingResult(Page3<T> page, String whereSql) {
+    public Page<T> getPagingResult(Page<T> page, String whereSql) {
         return getPagingResult(page, whereSql, null, null);
     }
 
     @Transactional(propagation = Propagation.NOT_SUPPORTED, readOnly = true)
-    public Page3<T> getPagingResult(Page3<T> page, String whereSql, LinkedHashMap<String, String> orderby) {
+    public Page<T> getPagingResult(Page<T> page, String whereSql, LinkedHashMap<String, String> orderby) {
         return getPagingResult(page, whereSql, null, orderby);
     }
 
     @Transactional(propagation = Propagation.NOT_SUPPORTED, readOnly = true)
-    public Page3<T> getPagingResult(Page3<T> page, String whereSql, Object[] queryParams) {
+    public Page<T> getPagingResult(Page<T> page, String whereSql, Object[] queryParams) {
         return getPagingResult(page, whereSql, queryParams, null);
     }
 
     @Transactional(propagation = Propagation.NOT_SUPPORTED, readOnly = true)
-    public Page3<T> getPagingResult(Page3<T> page, LinkedHashMap<String, String> orderby) {
+    public Page<T> getPagingResult(Page<T> page, LinkedHashMap<String, String> orderby) {
         return getPagingResult(page, null, null, orderby);
     }
 
     @SuppressWarnings("unchecked")
     @Transactional(propagation = Propagation.NOT_SUPPORTED, readOnly = true)
-    public Page3<T> getPagingResult(Page3<T> page, String whereSql, Object[] queryParams,
-            LinkedHashMap<String, String> orderby) {
+    public Page<T> getPagingResult(Page<T> page, String whereSql, Object[] queryParams,
+                    LinkedHashMap<String, String> orderby) {
         // 查询实体记录
         String hql = "select o from " + entityClassName + " o "
-                + (whereSql == null || "".equals(whereSql.trim()) ? "" : "where " + whereSql) + buildOrderby(orderby);
+                        + (whereSql == null || "".equals(whereSql.trim()) ? "" : "where " + whereSql)
+                        + buildOrderby(orderby);
         Query query = getQuery(hql);
         if (queryParams != null && queryParams.length > 0) {
             setQueryParams(query, queryParams);
         }
-        query.setFirstResult(page.getFirstResult()).setMaxResults(page.getMaxResult());
+        query.setFirstResult(page.getFirstRecordQueryFrom()).setMaxResults(page.getRecordCountInPage());
         List<T> list = query.list();
         page.setEntities(list);
 
         // 获得总记录数
         hql = "select count(o) from " + entityClassName + " o "
-                + (whereSql == null || "".equals(whereSql.trim()) ? "" : "where " + whereSql) + buildOrderby(orderby);
+                        + (whereSql == null || "".equals(whereSql.trim()) ? "" : "where " + whereSql)
+                        + buildOrderby(orderby);
         query = getQuery(hql);
         if (queryParams != null && queryParams.length > 0) {
             setQueryParams(query, queryParams);
         }
-        page.setTotalRecordNumber(((Integer.valueOf(query.iterate().next().toString()).intValue())));
+        page.setTotalRecordCount(((Integer.valueOf(query.iterate().next().toString()).intValue())));
         return page;
     }
 
