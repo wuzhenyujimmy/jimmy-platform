@@ -1,12 +1,30 @@
+
+/*************** Radius start***********************/
 .radius {
     -webkit-border-radius: 5px 5px 5px 5px;
     -moz-border-radius: 5px 5px 5px 5px;
     border-radius: 5px 5px 5px 5px;
 }
 
+/*************** Radius end***********************/
+
+/*************** Shadow start***********************/
 .shadow {
     box-shadow: 0 0.5em 1em rgba(100, 100, 100, 1);
 }
+
+/*************** Shadow end***********************/
+
+/*************** Float start***********************/
+
+.f-right {
+    float: right;
+}
+
+.f-left {
+    float: left;
+}
+/*************** Float end***********************/
 
 /***************  Button start ****************/
 
@@ -23,6 +41,7 @@
     -ms-user-select: none;
     -o-user-select: none;
     margin-left: 10px;
+    border: none;
 }
 
 .btn-big {

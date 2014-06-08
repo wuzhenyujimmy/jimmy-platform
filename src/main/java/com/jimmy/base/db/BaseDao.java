@@ -44,7 +44,7 @@ public interface BaseDao<T> {
      * @param id
      *            entity's id
      */
-    void delete(int id);
+    void delete(String id);
 
     /**
      * update entity
@@ -53,6 +53,14 @@ public interface BaseDao<T> {
      *            the entity to update
      */
     void update(T entity);
+
+    /**
+     * Add or update entity
+     * 
+     * @param entity
+     *            the entity to add or update
+     */
+    void addOrUpdate(T entity);
 
     /**
      * get all the entities according to hql
@@ -70,7 +78,16 @@ public interface BaseDao<T> {
      *            实体id
      * @return the entity founded
      */
-    T getEntity(int id);
+    T getEntity(String id);
+
+    /**
+     * Get entites by a group of entity id
+     * 
+     * @param ids
+     *            entities ids
+     * @return entites
+     */
+    List<T> getEntities(String... ids);
 
     /**
      * get all the entities

@@ -1,5 +1,7 @@
 slider = {
                
+    /** Methods about UI Start **/
+                
     width : "100%",
                 
     getSlide : function() {
@@ -31,19 +33,7 @@ slider = {
     
     frame: function() {
         return $(document.getElementsByTagName("iframe")[0]);
-    }
+    },
     
+    /** Methods about UI End **/
 };
-
-// Add click function to slider "Cancel" button and "Save" button
-$(function() {
-    
-    $(".slider .btn-normal").click(function(){
-        slider.hide();
-    });
-    
-    $(".slider .btn-cancel").click(function(){
-        slider.hide();
-    });
-    
-});

@@ -60,7 +60,7 @@ public class DaoSupport<T extends BaseEntity> implements BaseDao<T> {
     }
 
     @Transactional(rollbackFor = Exception.class)
-    public void delete(int id) {
+    public void delete(String id) {
         hibernateTemplate.delete(hibernateTemplate.get(entityClass, id));
     }
 
@@ -68,6 +68,14 @@ public class DaoSupport<T extends BaseEntity> implements BaseDao<T> {
     public void update(T entity) {
         entity.setUpdateDate(CalenderUtils.getNowString());
         hibernateTemplate.saveOrUpdate(entity);
+    }
+
+    public void addOrUpdate(T entity) {
+        if (null == entity.getCreateDate()) {
+            add(entity);
+        } else {
+            update(entity);
+        }
     }
 
     @SuppressWarnings("unchecked")
@@ -85,8 +93,19 @@ public class DaoSupport<T extends BaseEntity> implements BaseDao<T> {
     }
 
     @Transactional(propagation = Propagation.NOT_SUPPORTED, readOnly = true)
-    public T getEntity(int id) {
+    public T getEntity(String id) {
         return hibernateTemplate.get(entityClass, id);
+    }
+
+    @SuppressWarnings("unchecked")
+    public List<T> getEntities(String... ids) {
+
+        String whereSql = "from o where o.id in (？)";
+        Query query = getQuery(whereSql);
+        for (int i = 0; i < ids.length; i++) {
+            query.setParameter(i + 1, ids[i]);
+        }
+        return query.list();
     }
 
     @Transactional(propagation = Propagation.NOT_SUPPORTED, readOnly = true)
@@ -146,6 +165,7 @@ public class DaoSupport<T extends BaseEntity> implements BaseDao<T> {
         if (queryParams != null && queryParams.length > 0) {
             for (int i = 0; i < queryParams.length; i++) {
                 query.setParameter(i + 1, queryParams[i]);
+                // query.setParameter(i + 1, queryParams[i]);
             }
         }
     }

@@ -5,8 +5,6 @@ import java.util.Set;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 
 import com.jimmy.base.common.BaseEntity;
@@ -21,7 +19,7 @@ public class Tag extends BaseEntity {
 
     private String name;
 
-    private Tag parent;
+    private Set<Tag> parents;
 
     private Set<Tag> children;
 
@@ -32,10 +30,9 @@ public class Tag extends BaseEntity {
         return name;
     }
 
-    @ManyToOne
-    @JoinColumn
-    public Tag getParent() {
-        return parent;
+    @OneToMany(fetch = FetchType.LAZY)
+    public Set<Tag> getParents() {
+        return parents;
     }
 
     @OneToMany(fetch = FetchType.LAZY)
@@ -47,8 +44,8 @@ public class Tag extends BaseEntity {
         this.name = name;
     }
 
-    public void setParent(Tag parent) {
-        this.parent = parent;
+    public void setParents(Set<Tag> parents) {
+        this.parents = parents;
     }
 
     public void setChildren(Set<Tag> children) {

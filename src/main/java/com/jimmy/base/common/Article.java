@@ -95,6 +95,7 @@ public class Article extends BaseEntity {
 
     public void setHtmlContent(String htmlContent) {
         this.htmlContent = htmlContent;
+        this.textContent = HtmlParserUtils.parseHtml2Text(htmlContent);
     }
 
     public void setTextContent(String textContent) {

@@ -5,10 +5,10 @@
     
     <!-- 上一页 -->
     <c:if test="${page.currentPageIndex > 1}">
-        <a class="preLink" href="<c:out value='${page.baseUrl }'></c:out>?pageIndexFrom=0">
+        <a class="preLink" href="<c:out value='${page.baseUrl }'></c:out>?pageIndexFrom=1">
             <c:out value="${index }">第一页</c:out>
         </a>
-        <a class="preLink" href="<c:out value='${page.baseUrl }'></c:out>?pageIndexFrom=<c:out value='${index - 1}'></c:out>">
+        <a class="preLink" href="<c:out value='${page.baseUrl }'></c:out>?pageIndexFrom=<c:out value='${page.currentPageIndex - 1}'></c:out>">
             <c:out value="${index }">上一页</c:out>
         </a>
     </c:if>
@@ -30,7 +30,7 @@
     
     <!-- 下一页 -->
     <c:if test="${page.currentPageIndex < page.totalPageCount}">
-        <a class="nextLink" href="<c:out value='${page.baseUrl }'></c:out>?pageIndexFrom=<c:out value='${index + 1}'></c:out>">
+        <a class="nextLink" href="<c:out value='${page.baseUrl }'></c:out>?pageIndexFrom=<c:out value='${page.currentPageIndex + 1}'></c:out>">
             <c:out value="${index }">下一页</c:out>
         </a>
         <a class="nextLink" href="<c:out value='${page.baseUrl }'></c:out>?pageIndexFrom=<c:out value='${page.totalPageCount}'></c:out>">

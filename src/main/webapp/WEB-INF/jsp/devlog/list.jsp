@@ -37,6 +37,9 @@
         
             <div class="bread-crumb">
                 username : jimmy.wu
+                
+                <input class="btn btn-middle btn-normal radius f-right slider-show" type="button" value="Add New Article">
+                
             </div>
         
             <div class="left">
@@ -74,15 +77,8 @@
                 </c:forEach>
                 
                 <jsp:include page="../common/page.jsp"></jsp:include>
-            
-                <div class="slider radius shadow">
-                    <div class="slider-header">
-                        <input class="slider-title" readonly="readonly" value="Add new article">
-                        <div class="btn btn-normal btn-middle radius">Save</div>
-                        <div class="btn btn-cancel btn-middle radius">Cancel</div>
-                    </div>
-                    <jsp:include page="../widget/article.jsp"></jsp:include>
-                </div>
+                <jsp:include page="../common/slider.jsp"></jsp:include>
+                
             </div>
             
             <br style="clear:both"/>
@@ -94,6 +90,7 @@
         </footer>
         
         <script type="text/javascript" src="js/common/slider.js"></script>
+        <script type="text/javascript" src="js/devlog/devlog.js"></script>
         
         <script type="text/javascript">
         
