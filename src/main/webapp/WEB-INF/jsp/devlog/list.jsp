@@ -27,43 +27,15 @@
     </head>
     <body>
     
-        <header>
-            <nav>
-                This is header
-            </nav>
-        </header>
+        <jsp:include page="../common/head.jsp"></jsp:include>
         
         <div class="main">
         
-            <div class="bread-crumb">
-                username : jimmy.wu
-                
-                <input class="btn btn-middle btn-normal radius f-right slider-show" type="button" value="Add New Article">
-                
-            </div>
+            <jsp:include page="../common/crumb.jsp"></jsp:include>
         
-            <div class="left">
-                <button id="showSlider">Show</button>
-                <button id="hideSlider">Hide</button>
-                hello world, this is a beautiful place. You can come here later.
-                hello world, this is a beautiful place. You can come here later.
-                hello world, this is a beautiful place. You can come here later.
-                hello world, this is a beautiful place. You can come here later.
-                hello world, this is a beautiful place. You can come here later.
-                hello world, this is a beautiful place. You can come here later.
-                hello world, this is a beautiful place. You can come here later.
-                hello world, this is a beautiful place. You can come here later.
-                hello world, this is a beautiful place. You can come here later.
-                hello world, this is a beautiful place. You can come here later.
-                hello world, this is a beautiful place. You can come here later.
-                hello world, this is a beautiful place. You can come here later.
-                hello world, this is a beautiful place. You can come here later.
-                hello world, this is a beautiful place. You can come here later.
-                hello world, this is a beautiful place. You can come here later.
-                hello world, this is a beautiful place. You can come here later.
-                hello world, this is a beautiful place. You can come here later.
-                hello world, this is a beautiful place. You can come here later.
-            </div>
+            <jsp:include page="../common/left.jsp"></jsp:include>
+            
+            <input class="btn btn-middle btn-normal radius f-right slider-show" type="button" value="Add New Article">
             
             <div class="content">
             

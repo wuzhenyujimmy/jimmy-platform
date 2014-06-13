@@ -1,4 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jstl/core_rt"  prefix="c"%>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 <%
     String path = request.getContextPath();
     String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
@@ -8,46 +10,101 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <base href="<%=basePath %>">
-        <title>Insert title here</title>
+        <title>Tag</title>
+        
+        <link rel="stylesheet" href="css/reset.css" type="text/css" media="all" />
+        <link rel="stylesheet" href="css/base.css" type="text/css" media="all" />
+        
+        <link rel="stylesheet" href="css/slide.css" type="text/css" media="all" />
+        <link rel="stylesheet" href="css/custom.css" type="text/css" media="all" />
+        
+        <link rel="stylesheet" href="css/page/page.css" type="text/css" media="all" />
+        
+        <script src="jquery/jquery-1.11.0.min.js"></script>
         
         <style type="text/css">
-            .tag-form .label, .tag-form .left {
+        
+            .tag-form .line {
+            
+                height: 40px;
+                
+            }
+                
+            .tag-form .line .label, .tag-form .line .cencelBtn {
                 float: left;
-                width: 400px;
+                width: 350px;
                 text-align: right;
             }
             
-             .tag-form .content, .tag-form .right {
+            .tag-form .value, .tag-form .submitBtn {
                 float: left;
-                width: 600px;
+                width: 400px;
+            }
+            
+            .tag-form .value{
+                margin-left: 10px;
             }
             
         </style>
         
     </head>
     <body>
+    
+        <jsp:include page="../common/head.jsp"></jsp:include>
         
-        <form class="tag-form" action="tag/save" method="post">
+        <div class="main">
         
-            <div class="line">
-                <div class="label">Name</div>
-                <div class="content">
-                    <input name="name">
-                </div>
-            </div>
-            <div class="line">
+            <jsp:include page="../common/crumb.jsp"></jsp:include>
+        
+            <jsp:include page="../common/left.jsp"></jsp:include>
+        
+            <div class="content">
             
+                <form class="tag-form" action="tag/save" method="post">
+
+                    <div class="line">
+                        <div class="label">Parent Tag</div>
+                        <div class="value">
+                        
+                            <c:set var="firstLevel" value="1"></c:set>
+                        
+                            <c:if test="${null != tag }">
+                                <c:if test="${null != tag.parent }">
+                                    <c:if test="${null != tag.parent.parent }">
+                                        
+                                    </c:if>
+                                </c:if>
+                            </c:if>
+                        
+                            <select>
+                                <option>111</option>
+                                <option>222</option>
+                                <option>333</option>
+                            </select>
+                        </div>
+                    </div>
+        
+                    <div class="line">
+                        <div class="label">Tag Name</div>
+                        <div class="value">
+                            <input name="name">
+                        </div>
+                    </div>
+                    <div class="line">
+                        <div class="cencelBtn">
+                            <input class="btn btn-cancel btn-middle radius" type="button" value="Cancel">
+                        </div>
+                        <div class="submitBtn">
+                            <input class="btn btn-normal btn-middle radius" type="button" value="Submit">
+                        </div>
+                    </div>
+                </form>
             
             </div>
-            <div class="line">
-                <div class="left">
-                    <input class="btn btn-cancel btn-middle radius" type="button">
-                </div>
-                <div class="right">
-                    <input class="btn btn-normal btn-middle radius" type="button">
-                </div>
-            </div>
-        </form>
+        
+        </div>
+        
+        
         
     </body>
 </html>

@@ -1,5 +1,6 @@
 package com.jimmy.base.common;
 
+
 public enum EntityStatus {
     
     NEW("new"), SCAN("scanned"), VIEW_PART("view_part"), VIEW_COMPLETED(
@@ -10,5 +11,9 @@ public enum EntityStatus {
     
     private EntityStatus(String name){
         this.name = name;
+    }
+    
+    public String getName() {
+        return name;
     }
 }
