@@ -36,10 +36,12 @@ public class DaoSupport<T extends BaseEntity> implements BaseDao<T> {
         return null;
     }
 
+    @Transactional(propagation = Propagation.NOT_SUPPORTED)
     public Query getQuery(String hql) {
         return hibernateTemplate.getSessionFactory().getCurrentSession().createQuery(hql);
     }
 
+    @Transactional(propagation = Propagation.NOT_SUPPORTED)
     public Connection getJDBCConnection() {
         final String url = PropertyUtil.getProperty("hibernate/jdbc.properties", "jdbc.url");
         final String username = PropertyUtil.getProperty("hibernate/jdbc.properties", "jdbc.username");
@@ -70,6 +72,7 @@ public class DaoSupport<T extends BaseEntity> implements BaseDao<T> {
         hibernateTemplate.saveOrUpdate(entity);
     }
 
+    @Transactional(rollbackFor = Exception.class)
     public void addOrUpdate(T entity) {
         if (null == entity.getCreateDate()) {
             add(entity);
@@ -161,6 +164,7 @@ public class DaoSupport<T extends BaseEntity> implements BaseDao<T> {
         return page;
     }
 
+    @Transactional(propagation = Propagation.NOT_SUPPORTED)
     protected static void setQueryParams(Query query, Object[] queryParams) {
         if (queryParams != null && queryParams.length > 0) {
             for (int i = 0; i < queryParams.length; i++) {
@@ -170,6 +174,7 @@ public class DaoSupport<T extends BaseEntity> implements BaseDao<T> {
         }
     }
 
+    @Transactional(propagation = Propagation.NOT_SUPPORTED)
     protected static String buildOrderby(LinkedHashMap<String, String> orderby) {
         StringBuffer orderbySql = new StringBuffer("");
         if (orderby != null && orderby.size() > 0) {

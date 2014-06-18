@@ -39,7 +39,7 @@ public class TagServiceImpl extends DaoSupport<Tag> implements TagService {
     
     private Set<Tag> getAllSubTags(Set<Tag> allTags, Tag tag) {
         
-        Set<Tag> childTags = tag.getChildren();
+        List<Tag> childTags = tag.getChildren();
         
         if (!CollectionUtils.isEmpty(childTags)) {
             allTags.addAll(tag.getChildren());
