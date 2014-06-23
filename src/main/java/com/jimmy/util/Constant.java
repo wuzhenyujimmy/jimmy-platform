@@ -8,4 +8,8 @@ public class Constant {
 
     /** Split String */
     public static final String SPLIT = "#";
+
+    /** Ajax result string */
+    public static final String SUCCESS = "success";
+
 }

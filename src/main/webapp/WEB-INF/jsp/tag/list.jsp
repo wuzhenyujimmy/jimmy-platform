@@ -45,6 +45,26 @@
                 margin-left: 10px;
             }
             
+            .tag-line {
+                height: 50px;
+            }
+            
+            .tag-id {
+                width: 350px;
+            }
+            
+            .tag-name {
+                width: 150px;
+            }
+            
+            .tag-createDate {
+                width: 200px;
+            }
+            
+            .tag-line > div {
+                text-indent: 20px;
+            }
+            
         </style>
         
     </head>
@@ -59,47 +79,48 @@
             <jsp:include page="../common/left.jsp"></jsp:include>
         
             <div class="content">
-            
-                <form class="tag-form" action="tag/save" method="post">
-
-                    <div class="line">
-                        <div class="label">Parent Tag</div>
-                        <div class="value">
+                
+                 <c:forEach var="tag" items="${page.entities }">
+                
+                    <div style="margin-top: 10px;" class="tag-line">
+                        <div class="f-left tag-id">
+                            <c:out value="${tag.id }"></c:out>
+                        </div>
+                        <div class="f-left tag-name">
+                            <c:out value="${tag.name }"></c:out>
+                        </div>
                         
-                            <c:set var="firstLevel" value="1"></c:set>
+                        <div class="f-left tag-createDate">
+                            <c:out value="${tag.createDate }"></c:out>
+                        </div>
                         
-                            <c:if test="${null != tag }">
-                                <c:if test="${null != tag.parent }">
-                                    <c:if test="${null != tag.parent.parent }">
-                                        
-                                    </c:if>
-                                </c:if>
-                            </c:if>
+                        <div class="f-left tag-level">
+                            <c:out value="${tag.level }"></c:out>
+                        </div>
                         
-                            <select>
-                                <option>111</option>
-                                <option>222</option>
-                                <option>333</option>
-                            </select>
+                        <div class="f-left tag-disable">
+                            <a href="tag/delete?id=${tag.id }">
+                                <input type="button" class="btn btn-min btn-normal" value="Disable">
+                            </a>
                         </div>
+                        
+                        <div class="f-left tag-update">
+                            <a href="tag/toupdate?id=${tag.id }">
+                                <input type="button" class="btn btn-min btn-normal" value="Update">
+                            </a>
+                        </div>
+                        
+                        <div class="f-left tag-add">
+                            <a href="tag/toadd?parentTagId=${tag.id }">
+                                <input type="button" class="btn btn-min btn-normal" value="Add">
+                            </a>
+                        </div>
+                        
                     </div>
-        
-                    <div class="line">
-                        <div class="label">Tag Name</div>
-                        <div class="value">
-                            <input name="name">
-                        </div>
-                    </div>
-                    <div class="line">
-                        <div class="cencelBtn">
-                            <input class="btn btn-cancel btn-middle radius" type="button" value="Cancel">
-                        </div>
-                        <div class="submitBtn">
-                            <input class="btn btn-normal btn-middle radius" type="button" value="Submit">
-                        </div>
-                    </div>
-                </form>
-            
+                
+                </c:forEach>
+                
+                <jsp:include page="../common/page.jsp"></jsp:include>
             </div>
         
         </div>

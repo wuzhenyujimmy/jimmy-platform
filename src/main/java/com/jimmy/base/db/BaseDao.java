@@ -39,6 +39,14 @@ public interface BaseDao<T> {
     void add(T entity);
 
     /**
+     * Delete entity in logic
+     * 
+     * @param id
+     *            entity id
+     */
+    public void disable(String id);
+
+    /**
      * delete entity according to id
      * 
      * @param id

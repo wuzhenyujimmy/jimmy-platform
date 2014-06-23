@@ -62,6 +62,13 @@ public class DaoSupport<T extends BaseEntity> implements BaseDao<T> {
     }
 
     @Transactional(rollbackFor = Exception.class)
+    public void disable(String id) {
+        T entity = getEntity(id);
+        entity.setDeleted(true);
+        hibernateTemplate.update(entity);
+    }
+
+    @Transactional(rollbackFor = Exception.class)
     public void delete(String id) {
         hibernateTemplate.delete(hibernateTemplate.get(entityClass, id));
     }
@@ -139,11 +146,17 @@ public class DaoSupport<T extends BaseEntity> implements BaseDao<T> {
     @SuppressWarnings("unchecked")
     @Transactional(propagation = Propagation.NOT_SUPPORTED, readOnly = true)
     public Page<T> getPagingResult(Page<T> page, String whereSql, Object[] queryParams,
-                    LinkedHashMap<String, String> orderby) {
+            LinkedHashMap<String, String> orderby) {
         // 查询实体记录
-        String hql = "select o from " + entityClassName + " o "
-                        + (whereSql == null || "".equals(whereSql.trim()) ? "" : "where " + whereSql)
-                        + buildOrderby(orderby);
+        // String hql = "select o from " + entityClassName + " o "
+        // + (whereSql == null || "".equals(whereSql.trim()) ? "" : "where " +
+        // whereSql) + buildOrderby(orderby);
+        String hql = "select o from "
+                + entityClassName
+                + " o "
+                + (whereSql == null || "".equals(whereSql.trim()) ? "where o.deleted != true" : "where " + whereSql
+                        + " and o.deleted != true") + buildOrderby(orderby);
+
         Query query = getQuery(hql);
         if (queryParams != null && queryParams.length > 0) {
             setQueryParams(query, queryParams);
@@ -153,9 +166,11 @@ public class DaoSupport<T extends BaseEntity> implements BaseDao<T> {
         page.setEntities(list);
 
         // 获得总记录数
-        hql = "select count(o) from " + entityClassName + " o "
-                        + (whereSql == null || "".equals(whereSql.trim()) ? "" : "where " + whereSql)
-                        + buildOrderby(orderby);
+        hql = "select count(o) from "
+                + entityClassName
+                + " o "
+                + (whereSql == null || "".equals(whereSql.trim()) ? "where o.deleted != true" : "where " + whereSql
+                        + " and o.deleted != true") + buildOrderby(orderby);
         query = getQuery(hql);
         if (queryParams != null && queryParams.length > 0) {
             setQueryParams(query, queryParams);
@@ -168,7 +183,7 @@ public class DaoSupport<T extends BaseEntity> implements BaseDao<T> {
     protected static void setQueryParams(Query query, Object[] queryParams) {
         if (queryParams != null && queryParams.length > 0) {
             for (int i = 0; i < queryParams.length; i++) {
-                query.setParameter(i + 1, queryParams[i]);
+                query.setParameter(i, queryParams[i]);
                 // query.setParameter(i + 1, queryParams[i]);
             }
         }

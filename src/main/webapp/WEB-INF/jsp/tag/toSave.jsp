@@ -1,5 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jstl/core_rt" prefix="c"%>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 <%
@@ -67,20 +66,18 @@
                         
                         <c:choose>
                             <c:when test="${fn:length(tagSequenceMap) > 0 }">
-                                <c:forEach var="tagEntry" items="${tagSequenceMap }" varStatus="i">
-                                    <div class="level<c:out value='i'/>">
-                                        <select>
+                                <c:forEach var="tagEntry" items="${tagSequenceMap }" varStatus="status">
+                                    <div class="level${fn:length(tagSequenceMap) - status.index }'/>">
+                                        <select name="parentTagId">
                                             <c:forEach var="tag" items="${tagEntry.value }">
                                                 <c:choose>
-                                                
                                                     <c:when test="${tagEntry.key == tag.id }">
-                                                        <option selected="selected">${tag.name }</option>
+                                                        <option selected="selected" value="${tag.id }">${tag.name }</option>
                                                     </c:when>
                                                     
                                                     <c:otherwise>
-                                                        <option>${tag.name }</option>
+                                                        <option value="${tag.id }">${tag.name }</option>
                                                     </c:otherwise>
-                                                    
                                                 </c:choose>
                                             </c:forEach>
                                         </select>
@@ -89,7 +86,7 @@
                             </c:when>
                             
                             <c:otherwise>
-                            
+                                NULL
                             </c:otherwise>
                         </c:choose>
                         
@@ -99,17 +96,22 @@
                 <div class="line">
                     <div class="label">Tag Name</div>
                     <div class="value">
-                        <input name="name">
+                        <c:choose>
+                            <c:when test="${null != tag }">
+                                <input name="name" value="${tag.name }">
+                            </c:when>
+                            <c:otherwise>
+                                <input name="name">
+                            </c:otherwise>
+                        </c:choose>
                     </div>
                 </div>
                 <div class="line">
                     <div class="cencelBtn">
-                        <input class="btn btn-cancel btn-middle radius"
-                            type="button" value="Cancel">
+                        <input class="btn btn-cancel btn-middle radius" type="button" value="Cancel">
                     </div>
                     <div class="submitBtn">
-                        <input class="btn btn-normal btn-middle radius"
-                            type="button" value="Submit">
+                        <input class="btn btn-normal btn-middle radius" type="submit" value="Submit">
                     </div>
                 </div>
             </form>

@@ -19,7 +19,6 @@ import com.jimmy.base.page.Page;
 import com.jimmy.module.common.Tag;
 import com.jimmy.service.TagService;
 import com.jimmy.util.Constant;
-import com.jimmy.util.GsonUtil;
 
 @Controller
 @RequestMapping("tag")
@@ -30,42 +29,29 @@ public class TagController {
     @Autowired
     TagService tagService;
 
-    @RequestMapping("toSave")
-    public String toSave(@RequestParam(required = false) String parentTagId, HttpServletRequest request) {
+    @RequestMapping()
+    public String defaults() {
+        return "redirect:/tag/list";
+    }
 
-        List<Tag> tagSequence = new ArrayList<Tag>();
+    @RequestMapping("toadd")
+    public String toAdd(@RequestParam(required = false) String parentTagId, HttpServletRequest request) {
 
-        if (StringUtils.isEmpty(parentTagId)) {
-
-        } else {
+        if (!StringUtils.isEmpty(parentTagId)) {
             Tag tag = tagService.getEntity(parentTagId);
-
-            if (null != tag) {
-                tagSequence.add(0, tag);
-                Tag parentTag = null;
-
-                while (tag.getLevel() != FIRST_LEVEL) {
-                    parentTag = tag.getParent();
-                    tag = parentTag;
-                    tagSequence.add(0, tag);
-                }
-            }
+            request.setAttribute("tagSequenceMap", buildInheritTagSquence(tag));
         }
 
-        List<Tag> firstLevelTags = tagService.getFirstLevelTags();
-        Map<String, List<Tag>> tagSequenceMap = new HashMap<String, List<Tag>>();
+        return "tag/toSave";
+    }
 
-        for (int i = 0; i < tagSequence.size(); i++) {
-            Tag tag = tagSequence.get(i);
+    @RequestMapping("toupdate")
+    public String toUpdate(String id, HttpServletRequest request) {
 
-            if (i == 0) {
-                tagSequenceMap.put(tag.getId(), firstLevelTags);
-            } else {
-                tagSequenceMap.put(tag.getId(), tagSequence.get(i - 1).getChildren());
-            }
-        }
+        Tag tag = tagService.getEntity(id);
 
-        request.setAttribute("tagSequenceMap", tagSequenceMap);
+        request.setAttribute("tagSequenceMap", buildInheritTagSquence(tag.getParent()));
+        request.setAttribute("tag", tag);
 
         return "tag/toSave";
     }
@@ -83,25 +69,32 @@ public class TagController {
             tag = tagService.getEntity(id);
         }
 
+        if (!StringUtils.isEmpty(name)) {
+            tag.setName(name);
+        }
+
         String redirectUrl = "";
         if (StringUtils.isEmpty(parentTagId)) {
-            redirectUrl = "redirect:tag/list";
+            tag.setLevel(FIRST_LEVEL);
+            redirectUrl = "redirect:/tag/list";
         } else {
             parentTag = tagService.getEntity(parentTagId);
             tag.setParent(parentTag);
 
-            redirectUrl = "redirect:tag/list?parentTagId=" + parentTagId;
+            redirectUrl = "redirect:/tag/list?parentTagId=" + parentTagId;
         }
 
         tagService.addOrUpdate(tag);
 
-        GsonUtil.writePlainString(redirectUrl, response);
-        return "";
+        // GsonUtil.writePlainString(redirectUrl, response);
+        return redirectUrl;
     }
 
     @RequestMapping("/delete")
-    public String delete() {
-        return "";
+    public String delete(@RequestParam String id, HttpServletResponse response) {
+        tagService.disable(id);
+        // GsonUtil.writePlainString(Constant.SUCCESS, response);
+        return "redirect:/tag/list";
     }
 
     @RequestMapping("/list")
@@ -113,9 +106,9 @@ public class TagController {
 
         Page<Tag> page = null;
         if (pageIndexFrom != null && pageIndexFrom > 0) {
-            page = new Page<Tag>("devlog/list", pageIndexFrom);
+            page = new Page<Tag>("tag/list", pageIndexFrom);
         } else {
-            page = new Page<Tag>("devlog/list");
+            page = new Page<Tag>("tag/list");
         }
 
         LinkedHashMap<String, String> orderMap = new LinkedHashMap<String, String>();
@@ -135,5 +128,52 @@ public class TagController {
         request.setAttribute("page", page);
 
         return "tag/list";
+    }
+
+    private Map<String, List<Tag>> buildInheritTagSquence(Tag tag) {
+
+        List<Tag> tagSequence = new ArrayList<Tag>();
+
+        Tag parentTag = null;
+
+        if (null != tag) {
+            tagSequence.add(0, tag);
+            parentTag = tag.getParent();
+        }
+
+        if (null != parentTag) {
+            tagSequence.add(0, parentTag);
+
+            while (parentTag.getLevel() != FIRST_LEVEL) {
+                parentTag = parentTag.getParent();
+
+                if (null == parentTag) {
+                    break;
+                }
+
+                tagSequence.add(0, parentTag);
+            }
+        }
+
+        List<Tag> firstLevelTags = tagService.getFirstLevelTags();
+        Map<String, List<Tag>> tagSequenceMap = new HashMap<String, List<Tag>>();
+
+        for (int i = 0; i < tagSequence.size(); i++) {
+            Tag t = tagSequence.get(i);
+
+            if (i == 0) {
+                tagSequenceMap.put(t.getId(), firstLevelTags);
+            } else {
+
+                List<Tag> childTagList = new ArrayList<Tag>();
+                childTagList.addAll(tagSequence.get(i - 1).getChildren());
+
+                tagSequenceMap.put(t.getId(), childTagList);
+                System.out.println(tagSequence.get(i - 1).getName());
+                System.out.println(tagSequence.get(i - 1).getChildren().size());
+            }
+        }
+
+        return tagSequenceMap;
     }
 }

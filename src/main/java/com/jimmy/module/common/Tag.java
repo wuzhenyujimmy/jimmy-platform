@@ -1,6 +1,6 @@
 package com.jimmy.module.common;
 
-import java.util.List;
+import java.util.Set;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -23,8 +23,8 @@ public class Tag extends BaseEntity {
 
     private Tag parent;
 
-    private List<Tag> children;
-    
+    private Set<Tag> children;
+
     private int level;
 
     /* Getter and Setter start */
@@ -33,7 +33,7 @@ public class Tag extends BaseEntity {
     public String getName() {
         return name;
     }
-    
+
     @ManyToOne
     @JoinColumn
     public Tag getParent() {
@@ -41,10 +41,10 @@ public class Tag extends BaseEntity {
     }
 
     @OneToMany(fetch = FetchType.LAZY)
-    public List<Tag> getChildren() {
+    public Set<Tag> getChildren() {
         return children;
     }
-    
+
     @Column
     public int getLevel() {
         return level;
@@ -54,18 +54,17 @@ public class Tag extends BaseEntity {
         this.name = name;
     }
 
-
-    public void setChildren(List<Tag> children) {
+    public void setChildren(Set<Tag> children) {
         this.children = children;
     }
-    
+
     public void setParent(Tag parent) {
         this.parent = parent;
         if (null != this.parent) {
             this.level = this.parent.level + 1;
         }
     }
-    
+
     public void setLevel(int level) {
         this.level = level;
     }

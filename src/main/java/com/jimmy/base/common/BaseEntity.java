@@ -21,6 +21,8 @@ public class BaseEntity implements Serializable {
 
     protected String deleteDate;
 
+    protected boolean deleted = false;
+
     /* Setter and getter start */
 
     @Id
@@ -46,6 +48,15 @@ public class BaseEntity implements Serializable {
         return deleteDate;
     }
 
+    @Column
+    public boolean isDeleted() {
+        return deleted;
+    }
+
+    public boolean getDeleted() {
+        return deleted;
+    }
+
     public void setId(String id) {
         this.id = id;
     }
@@ -60,6 +71,10 @@ public class BaseEntity implements Serializable {
 
     public void setDeleteDate(String deleteDate) {
         this.deleteDate = deleteDate;
+    }
+
+    public void setDeleted(boolean deleted) {
+        this.deleted = deleted;
     }
 
     /* Setter and getter end */

@@ -77,7 +77,17 @@ public class Page<T> {
     }
 
     public int getPageIndexTo() {
-        pageIndexTo = getPageIndexFrom() + totalPageIndexCountToShow - 1;
+
+        int pageIndexFrom = getPageIndexFrom();
+        int totalPageCount = getTotalPageCount();
+        int desiredIndexTo = pageIndexFrom + totalPageIndexCountToShow - 1;
+
+        if (totalPageCount >= desiredIndexTo) {
+            pageIndexTo = desiredIndexTo;
+        } else {
+            pageIndexTo = totalPageCount;
+        }
+
         return pageIndexTo;
     }
 
