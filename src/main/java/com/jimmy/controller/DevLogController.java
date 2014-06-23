@@ -74,4 +74,5 @@ public class DevLogController {
 
         return "devlog/list";
     }
+
 }
