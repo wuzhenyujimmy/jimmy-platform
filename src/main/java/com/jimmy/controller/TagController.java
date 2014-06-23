@@ -58,7 +58,7 @@ public class TagController {
 
     @RequestMapping("/save")
     public String save(@RequestParam(required = false) String id, @RequestParam String name,
-            @RequestParam(required = false) String parentTagId, HttpServletResponse response) {
+                    @RequestParam(required = false) String parentTagId, HttpServletResponse response) {
 
         Tag tag = null;
         Tag parentTag = null;
@@ -99,7 +99,7 @@ public class TagController {
 
     @RequestMapping("/list")
     public String list(HttpServletRequest request, @RequestParam(required = false) String parentTagId,
-            @RequestParam(required = false) Integer pageIndexFrom) {
+                    @RequestParam(required = false) Integer pageIndexFrom) {
 
         String whereSql = "";
         Tag parentTag = null;
@@ -169,8 +169,6 @@ public class TagController {
                 childTagList.addAll(tagSequence.get(i - 1).getChildren());
 
                 tagSequenceMap.put(t.getId(), childTagList);
-                System.out.println(tagSequence.get(i - 1).getName());
-                System.out.println(tagSequence.get(i - 1).getChildren().size());
             }
         }
 

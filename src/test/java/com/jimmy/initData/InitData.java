@@ -6,8 +6,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
+import com.jimmy.module.common.Tag;
 import com.jimmy.module.dev.DevLog;
 import com.jimmy.service.DevLogService;
+import com.jimmy.service.TagService;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(locations = "../../../spring/applicationContext.xml")
@@ -15,6 +17,9 @@ public class InitData {
 
     @Autowired
     DevLogService devLogService;
+
+    @Autowired
+    TagService tagService;
 
     @Test
     public void init() {
@@ -26,5 +31,13 @@ public class InitData {
 
             System.out.println(i + "  ====================");
         }
+    }
+
+    @Test
+    public void tesetTag() {
+        Tag tag = tagService.getEntity("402881ec46c887ac0146c8a1dd990001");
+        System.out.println(tag.getChildren() == null);
+        System.out.println(tag.getChildren().size());
+        System.out.println("==========");
     }
 }
