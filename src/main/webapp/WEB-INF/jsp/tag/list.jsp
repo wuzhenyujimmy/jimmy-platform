@@ -25,12 +25,6 @@
         <script src="jquery/jquery-1.11.0.min.js"></script>
         
         <style type="text/css">
-        
-            .tag-form .line {
-            
-                height: 40px;
-                
-            }
                 
             .tag-form .line .label, .tag-form .line .cencelBtn {
                 float: left;
@@ -49,20 +43,32 @@
             
             /* -------------------- CSS for tree Start ------------------ */
             
+            .tree-level2, .tree-level3, .tree-level4, .tree-level5 {
+                display: none;
+            }
+            
+            .tree-level1 {
+                background-color: #EEEEEE;
+            }
+            
             .tree-level2 {
                 margin-left: 50px;
+                background-color: #EEEEEE;
             }
             
             .tree-level3 {
                 margin-left: 100px;
+                background-color: #EEEEEE;
             }
             
             .tree-level4 {
                 margin-left: 150px;
+                background-color: #EEEEEE;
             }
             
             .tree-level5 {
                 margin-left: 200px;
+                background-color: #EEEEEE;
             }
             
             /* ------------------ CSS for tree end ----------------------- */
@@ -70,6 +76,8 @@
             .tag-line {
                 height: 50px;
                 line-height: 50px;
+                border: 1px solid black;
+                margin-bottom: 4px;
             }
             
             /* Tree arrow */
@@ -80,22 +88,27 @@
                 cursor: pointer;
                 width: 30px;
                 position: absolute;
+                left: 10px;
             }
             
             .tag-line input {
                 margin-top: 10px;
             }
             
-            .tag-id {
-                width: 350px;
-            }
-            
             .tag-name {
                 width: 150px;
             }
             
+            .tag-level {
+                width: 100px;
+            }
+            
+            .tag-child {
+                width: 80px;
+            }
+            
             .tag-createDate {
-                width: 200px;
+                width: 180px;
             }
             
             .tag-line > div {
@@ -126,18 +139,26 @@
         
         <script type="text/javascript">
         
-        	$(".tag-line .icon").click(function() {
-        	    
-        	    var arrowforwardclazz = "ion-chevron-right";
-        	    var arrowdownclazz = "ion-chevron-down";
-        	    
-        	    if (this.className.indexOf(arrowforwardclazz) > 0) {
-        	        this.className = this.className.replace(arrowforwardclazz, arrowdownclazz);
+            $(".tag-line .icon").click(function() {
+                
+                var arrowforwardclazz = "ion-chevron-right";
+                var arrowdownclazz = "ion-chevron-down";
+                
+                var parentNode = this.parentNode;
+                var id = parentNode.id;
+                console.log(id + "    ---");
+                var childNodes = $("div[parent='" + id + "']");
+                if (this.className.indexOf(arrowforwardclazz) > 0) {
+                    this.className = this.className.replace(arrowforwardclazz, arrowdownclazz);
+                    $(this).css("left", "0px");
+                    childNodes.slideDown(500);
                 } else {
                     this.className = this.className.replace(arrowdownclazz, arrowforwardclazz);
+                    $(this).css("left", "10px");
+                    childNodes.slideUp(500);
                 }
-        	    
-        	});
+                
+            });
         
         </script>
         

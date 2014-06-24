@@ -34,7 +34,7 @@ public class TagServiceImpl extends DaoSupport<Tag> implements TagService {
 
         LinkedHashMap<String, String> orderMap = new LinkedHashMap<String, String>();
         orderMap.put("name", Constant.ORDER_ASC);
-        String queryString = "from Tag o.level = 1";
+        String queryString = "from Tag o where o.level = 1";
         return findAll(queryString);
     }
 

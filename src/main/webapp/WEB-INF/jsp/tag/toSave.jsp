@@ -25,24 +25,29 @@
 <script src="jquery/jquery-1.11.0.min.js"></script>
 
 <style type="text/css">
-.tag-form .line {
-    height: 40px;
-}
-
-.tag-form .line .label,.tag-form .line .cencelBtn {
-    float: left;
-    width: 350px;
-    text-align: right;
-}
-
-.tag-form .value,.tag-form .submitBtn {
-    float: left;
-    width: 400px;
-}
-
-.tag-form .value {
-    margin-left: 10px;
-}
+    .tag-form .line {
+        height: 40px;
+    }
+    
+    .tag-form .line .label,.tag-form .line .cencelBtn {
+        float: left;
+        width: 350px;
+        text-align: right;
+    }
+    
+    .tag-form .value,.tag-form .submitBtn {
+        float: left;
+        width: 400px;
+    }
+    
+    .tag-form .value {
+        margin-left: 10px;
+    }
+    
+    .tag-form .tag-select {
+        float: left;
+        min-width: 100px;
+    }
 </style>
 
 </head>
@@ -67,20 +72,41 @@
                         <c:choose>
                             <c:when test="${fn:length(tagSequenceMap) > 0 }">
                                 <c:forEach var="tagEntry" items="${tagSequenceMap }" varStatus="status">
-                                    <div class="level${fn:length(tagSequenceMap) - status.index }'/>">
-                                        <select name="parentTagId">
-                                            <c:forEach var="tag" items="${tagEntry.value }">
-                                                <c:choose>
-                                                    <c:when test="${tagEntry.key == tag.id }">
-                                                        <option selected="selected" value="${tag.id }">${tag.name }</option>
-                                                    </c:when>
-                                                    
-                                                    <c:otherwise>
-                                                        <option value="${tag.id }">${tag.name }</option>
-                                                    </c:otherwise>
-                                                </c:choose>
-                                            </c:forEach>
-                                        </select>
+                                    <div class="level${status.index + 1} tag-select" >
+                                        <c:choose>
+                                            <c:when test="${fn:length(tagSequenceMap) ==  status.index + 1}">
+                                                <select name="parentTagId">
+                                                    <c:forEach var="tag" items="${tagEntry.value }">
+                                                        <c:choose>
+                                                            <c:when test="${tagEntry.key == tag.id }">
+                                                                <option selected="selected" value="${tag.id }">${tag.name }</option>
+                                                            </c:when>
+                                                            
+                                                            <c:otherwise>
+                                                                <option value="${tag.id }">${tag.name }</option>
+                                                            </c:otherwise>
+                                                        </c:choose>
+                                                    </c:forEach>
+                                                </select>
+                                             </c:when>
+                                             
+                                             <c:otherwise>
+                                                <select name="parentTagId">
+                                                    <c:forEach var="tag" items="${tagEntry.value }">
+                                                        <c:choose>
+                                                            <c:when test="${tagEntry.key == tag.id }">
+                                                                <option selected="selected" value="${tag.id }">${tag.name }</option>
+                                                            </c:when>
+                                                            
+                                                            <c:otherwise>
+                                                                <option value="${tag.id }">${tag.name }</option>
+                                                            </c:otherwise>
+                                                        </c:choose>
+                                                    </c:forEach>
+                                                </select>
+                                             </c:otherwise>
+                                        
+                                        </c:choose>
                                     </div>
                                 </c:forEach>
                             </c:when>

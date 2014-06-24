@@ -17,6 +17,16 @@ public class TreeTag extends BaseFlatUITag {
     @Override
     public String getHtmlContent() {
         StringBuilder sb = new StringBuilder();
+        
+        String titleNode = 
+        "<div class='tag-line'>" + 
+            "<div class='f-left tag-name'>Name</div>" + 
+            "<div class='f-left tag-level'>Level</div>" + 
+            "<div class='f-left tag-child'>Child</div>" + 
+            "<div class='f-left tag-createDate'>Create Time</div>" + 
+        "</div>";
+        
+        sb.append(titleNode);
 
         List<Tag> firstLevelTags = treeMap.get(FIRST_LEVEL_MAP_KEY);
 
@@ -44,32 +54,44 @@ public class TreeTag extends BaseFlatUITag {
         if (!CollectionUtils.isEmpty(children)) {
             iconNode = "<i class='icon ion-chevron-right'></i>";
         }
+        
+        String parentId = "";
+        Tag parentTag = tag.getParent();
+        if (null != parentTag) {
+            parentId = parentTag.getId();
+        }
+
+        int childTagCount = 0;
+        Set<Tag> childTags = tag.getChildren();
+        if (!CollectionUtils.isEmpty(childTags)) {
+            childTagCount = childTags.size();
+        }
 
         return 
 
-        "<div class='tree-level" + tag.getLevel() + " tag-line'>" +
+        "<div id='" + tag.getId() + "' class='tree-level" + tag.getLevel() + " tag-line' parent='" + parentId + "'>" +
 
             iconNode +
     
-            "<div class='f-left tag-id'>" + tag.getId() + "</div>" +
             "<div class='f-left tag-name'>" + tag.getName() + "</div>" + 
-            "<div class='f-left tag-createDate'>" + tag.getCreateDate() + "</div>" + 
             "<div class='f-left tag-level'>" + tag.getLevel() + "</div>" + 
+            "<div class='f-left tag-child'>( " + childTagCount + " )</div>" + 
+            "<div class='f-left tag-createDate'>" + tag.getCreateDate() + "</div>" + 
             
             "<div class='f-left tag-disable'>" + 
-                "<a herf='tag/delete?id=${tag.id }'>" + 
+                "<a href='tag/delete?id=" + tag.getId() + "'>" + 
                     "<input type='button' class='btn btn-min btn-normal' value='Disable'>" + 
                 "</a>" +
             "</div>" + 
                 
             "<div class='f-left tag-update'>" + 
-                "<a herf='tag/toupdate?id=${tag.id }'>" + 
+                "<a href='tag/toupdate?id=" + tag.getId() + "'>" + 
                     "<input type='button' class='btn btn-min btn-normal' value='Update'>" + 
                 "</a>" +
             "</div>" + 
             
             "<div class='f-left tag-add'>" + 
-                "<a herf='tag/toadd?parentTagId=${tag.id }'>" + 
+                "<a href='tag/toadd?parentTagId=" + tag.getId() + "'>" + 
                     "<input type='button' class='btn btn-min btn-normal' value='Add'>" + 
                 "</a>" +
             "</div>" + 
