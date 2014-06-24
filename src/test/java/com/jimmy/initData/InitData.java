@@ -6,10 +6,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
-import com.jimmy.module.common.Tag;
 import com.jimmy.module.dev.DevLog;
 import com.jimmy.service.DevLogService;
 import com.jimmy.service.TagService;
+import com.jimmy.web.taglib.TreeTag;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(locations = "../../../spring/applicationContext.xml")
@@ -20,6 +20,9 @@ public class InitData {
 
     @Autowired
     TagService tagService;
+
+    @Autowired
+    TreeTag treeTag;
 
     @Test
     public void init() {
@@ -34,10 +37,7 @@ public class InitData {
     }
 
     @Test
-    public void tesetTag() {
-        Tag tag = tagService.getEntity("402881ec46c887ac0146c8a1dd990001");
-        System.out.println(tag.getChildren() == null);
-        System.out.println(tag.getChildren().size());
-        System.out.println("==========");
+    public void teetTag() {
+        System.out.println(treeTag.getHtmlContent());
     }
 }

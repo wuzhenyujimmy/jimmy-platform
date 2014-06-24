@@ -55,11 +55,11 @@ public class DevLogController {
     }
 
     @RequestMapping("/list")
-    public String list(HttpServletRequest request, @RequestParam(required = false) Integer pageIndexFrom) {
+    public String list(HttpServletRequest request, @RequestParam(required = false) Integer currentPageIndex) {
         Page<DevLog> page = null;
 
-        if (pageIndexFrom != null && pageIndexFrom > 0) {
-            page = new Page<DevLog>("devlog/list", pageIndexFrom);
+        if (currentPageIndex != null && currentPageIndex > 0) {
+            page = new Page<DevLog>("devlog/list", currentPageIndex);
         } else {
             page = new Page<DevLog>("devlog/list");
         }

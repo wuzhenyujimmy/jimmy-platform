@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jstl/core_rt"  prefix="c"%>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
+<%@ taglib prefix="jimmy" uri="http://www.jimmy.com/jsp/ui/jimmy" %>
 <%
     String path = request.getContextPath();
     String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
@@ -19,6 +20,7 @@
         <link rel="stylesheet" href="css/custom.css" type="text/css" media="all" />
         
         <link rel="stylesheet" href="css/page/page.css" type="text/css" media="all" />
+        <link rel="stylesheet" href="ionicons-1.5.2/css/ionicons.css" type="text/css" media="all" />
         
         <script src="jquery/jquery-1.11.0.min.js"></script>
         
@@ -45,8 +47,43 @@
                 margin-left: 10px;
             }
             
+            /* -------------------- CSS for tree Start ------------------ */
+            
+            .tree-level2 {
+                margin-left: 50px;
+            }
+            
+            .tree-level3 {
+                margin-left: 100px;
+            }
+            
+            .tree-level4 {
+                margin-left: 150px;
+            }
+            
+            .tree-level5 {
+                margin-left: 200px;
+            }
+            
+            /* ------------------ CSS for tree end ----------------------- */
+            
             .tag-line {
                 height: 50px;
+                line-height: 50px;
+            }
+            
+            /* Tree arrow */
+            .tag-line i {
+                font-size: 30px;
+                color: blue;
+                margin-top: 10px;
+                cursor: pointer;
+                width: 30px;
+                position: absolute;
+            }
+            
+            .tag-line input {
+                margin-top: 10px;
             }
             
             .tag-id {
@@ -62,7 +99,7 @@
             }
             
             .tag-line > div {
-                text-indent: 20px;
+                text-indent: 30px;
             }
             
         </style>
@@ -79,53 +116,30 @@
             <jsp:include page="../common/left.jsp"></jsp:include>
         
             <div class="content">
-                
-                 <c:forEach var="tag" items="${page.entities }">
-                
-                    <div style="margin-top: 10px;" class="tag-line">
-                        <div class="f-left tag-id">
-                            <c:out value="${tag.id }"></c:out>
-                        </div>
-                        <div class="f-left tag-name">
-                            <c:out value="${tag.name }"></c:out>
-                        </div>
-                        
-                        <div class="f-left tag-createDate">
-                            <c:out value="${tag.createDate }"></c:out>
-                        </div>
-                        
-                        <div class="f-left tag-level">
-                            <c:out value="${tag.level }"></c:out>
-                        </div>
-                        
-                        <div class="f-left tag-disable">
-                            <a href="tag/delete?id=${tag.id }">
-                                <input type="button" class="btn btn-min btn-normal" value="Disable">
-                            </a>
-                        </div>
-                        
-                        <div class="f-left tag-update">
-                            <a href="tag/toupdate?id=${tag.id }">
-                                <input type="button" class="btn btn-min btn-normal" value="Update">
-                            </a>
-                        </div>
-                        
-                        <div class="f-left tag-add">
-                            <a href="tag/toadd?parentTagId=${tag.id }">
-                                <input type="button" class="btn btn-min btn-normal" value="Add">
-                            </a>
-                        </div>
-                        
-                    </div>
-                
-                </c:forEach>
-                
+                 
+                <jimmy:tree treeMap="${treeMap }"/>
+                 
                 <jsp:include page="../common/page.jsp"></jsp:include>
             </div>
         
         </div>
         
+        <script type="text/javascript">
         
+        	$(".tag-line .icon").click(function() {
+        	    
+        	    var arrowforwardclazz = "ion-chevron-right";
+        	    var arrowdownclazz = "ion-chevron-down";
+        	    
+        	    if (this.className.indexOf(arrowforwardclazz) > 0) {
+        	        this.className = this.className.replace(arrowforwardclazz, arrowdownclazz);
+                } else {
+                    this.className = this.className.replace(arrowdownclazz, arrowforwardclazz);
+                }
+        	    
+        	});
+        
+        </script>
         
     </body>
 </html>

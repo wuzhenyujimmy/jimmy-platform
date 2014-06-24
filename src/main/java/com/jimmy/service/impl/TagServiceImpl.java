@@ -10,6 +10,7 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.CollectionUtils;
 
 import com.jimmy.base.db.DaoSupport;
+import com.jimmy.base.page.Page;
 import com.jimmy.module.common.Tag;
 import com.jimmy.service.TagService;
 import com.jimmy.util.Constant;
@@ -33,8 +34,20 @@ public class TagServiceImpl extends DaoSupport<Tag> implements TagService {
 
         LinkedHashMap<String, String> orderMap = new LinkedHashMap<String, String>();
         orderMap.put("name", Constant.ORDER_ASC);
-        String queryString = "from Tag o where o.level = 1";
+        String queryString = "from Tag o.level = 1";
         return findAll(queryString);
+    }
+
+    public List<Tag> getFirstLevelTagInPage(int currentPageIndex) {
+
+        LinkedHashMap<String, String> orderby = new LinkedHashMap<String, String>();
+        orderby.put("name", Constant.ORDER_ASC);
+        String whereSql = "o.level = 1";
+
+        Page<Tag> page = new Page<Tag>("tag/list", currentPageIndex);
+        page = getPagingResult(page, whereSql, orderby);
+
+        return page.getEntities();
     }
 
     private Set<Tag> getAllSubTags(Set<Tag> allTags, Tag tag) {

@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<taglib xmlns="http://java.sun.com/xml/ns/j2ee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://java.sun.com/xml/ns/j2ee http://java.sun.com/xml/ns/j2ee/web-jsptaglibrary_2_0.xsd"
+    version="2.0">
+
+    <description>Custom UI width FlatUI library</description>
+    <display-name>JSP Flat UI</display-name>
+    <tlib-version>1.0</tlib-version>
+    <short-name>flatui</short-name>
+    <uri>http://www.jimmy.com/jsp/ui/jimmy</uri>
+
+    <tag>
+        <name>tree</name>
+        <tag-class>com.jimmy.web.taglib.TreeTag</tag-class>
+        <body-content>empty</body-content>
+        
+        <attribute>
+            <name>treeMap</name>
+            <required>true</required>
+            <rtexprvalue>true</rtexprvalue>
+        </attribute>
+    </tag>
+
+</taglib>

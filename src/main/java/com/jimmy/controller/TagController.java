@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.util.CollectionUtils;
 import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -25,6 +26,8 @@ import com.jimmy.util.Constant;
 public class TagController {
 
     private static final int FIRST_LEVEL = 1;
+
+    private static final String FIRST_LEVEL_MAP_KEY = "";
 
     @Autowired
     TagService tagService;
@@ -58,7 +61,7 @@ public class TagController {
 
     @RequestMapping("/save")
     public String save(@RequestParam(required = false) String id, @RequestParam String name,
-                    @RequestParam(required = false) String parentTagId, HttpServletResponse response) {
+            @RequestParam(required = false) String parentTagId, HttpServletResponse response) {
 
         Tag tag = null;
         Tag parentTag = null;
@@ -99,33 +102,29 @@ public class TagController {
 
     @RequestMapping("/list")
     public String list(HttpServletRequest request, @RequestParam(required = false) String parentTagId,
-                    @RequestParam(required = false) Integer pageIndexFrom) {
+            @RequestParam(required = false) Integer currentPageIndex) {
 
-        String whereSql = "";
-        Tag parentTag = null;
-
-        Page<Tag> page = null;
-        if (pageIndexFrom != null && pageIndexFrom > 0) {
-            page = new Page<Tag>("tag/list", pageIndexFrom);
-        } else {
-            page = new Page<Tag>("tag/list");
+        if (null == currentPageIndex || currentPageIndex < 0) {
+            currentPageIndex = 0;
         }
+
+        Page<Tag> page = new Page<Tag>("tag/list", currentPageIndex);
 
         LinkedHashMap<String, String> orderMap = new LinkedHashMap<String, String>();
         orderMap.put("updateDate", Constant.ORDER_DESC);
         orderMap.put("createDate", Constant.ORDER_DESC);
 
-        Tag[] parentTags = new Tag[1];
-        if (StringUtils.isEmpty(parentTagId)) {
-            page = tagService.getPagingResult(page, orderMap);
-        } else {
-            whereSql = "o.parent = ? ";
+        String whereSql = "o.level = 1";
+        Tag[] parentTags = null;
+        if (!StringUtils.isEmpty(parentTagId)) {
+            whereSql += " and o.parent = ? ";
+            parentTags = new Tag[1];
             parentTags[0] = tagService.getEntity(parentTagId);
-            page = tagService.getPagingResult(page, whereSql, parentTags, orderMap);
         }
+        page = tagService.getPagingResult(page, whereSql, parentTags, orderMap);
 
-        request.setAttribute("parentTag", parentTag);
         request.setAttribute("page", page);
+        request.setAttribute("treeMap", buildTagTree(page.getEntities()));
 
         return "tag/list";
     }
@@ -173,5 +172,30 @@ public class TagController {
         }
 
         return tagSequenceMap;
+    }
+
+    private Map<String, List<Tag>> buildTagTree(List<Tag> firstLevelTags) {
+
+        Map<String, List<Tag>> map = new HashMap<String, List<Tag>>();
+
+        map.put(FIRST_LEVEL_MAP_KEY, firstLevelTags);
+        buildRecursiveMap(map, firstLevelTags);
+
+        return map;
+    }
+
+    private void buildRecursiveMap(Map<String, List<Tag>> map, List<Tag> tags) {
+
+        if (!CollectionUtils.isEmpty(tags)) {
+
+            for (Tag tag : tags) {
+                List<Tag> childTags = new ArrayList<Tag>(tag.getChildren());
+
+                if (!CollectionUtils.isEmpty(childTags)) {
+                    map.put(tag.getId(), childTags);
+                    buildRecursiveMap(map, childTags);
+                }
+            }
+        }
     }
 }

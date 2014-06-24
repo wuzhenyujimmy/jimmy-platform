@@ -72,14 +72,19 @@
         <url-pattern>/</url-pattern>
     </servlet-mapping>
     
-    <!-- My jsp taglib 
+    <!-- My jsp taglib -->
     <jsp-config>
         <taglib>
             <taglib-uri>http://www.jimmy.com/jsp/ui/flatui</taglib-uri>
             <taglib-location>/WEB-INF/taglib/flatui.tld</taglib-location>
         </taglib>
+        
+        <taglib>
+            <taglib-uri>http://www.jimmy.com/jsp/ui/jimmy</taglib-uri>
+            <taglib-location>/WEB-INF/taglib/tree.tld</taglib-location>
+        </taglib>
     </jsp-config>
-    -->
+    
     
     <welcome-file-list>
         <welcome-file>index.jsp</welcome-file>

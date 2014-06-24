@@ -13,4 +13,6 @@ public interface TagService extends BaseDao<Tag> {
     Set<Tag> getAllSubTags(Tag tag);
     
     List<Tag> getFirstLevelTags();
+
+    List<Tag> getFirstLevelTagInPage(int currentPageIndex);
 }
