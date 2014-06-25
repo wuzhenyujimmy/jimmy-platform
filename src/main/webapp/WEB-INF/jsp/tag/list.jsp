@@ -78,6 +78,7 @@
                 line-height: 50px;
                 border: 1px solid black;
                 margin-bottom: 4px;
+                position: relative;
             }
             
             /* Tree arrow */
@@ -139,25 +140,60 @@
         
         <script type="text/javascript">
         
-            $(".tag-line .icon").click(function() {
+            function slideUpChildNode(node) {
+                var $childNodes = $("div[parent='" + node.id + "']");
                 
-                var arrowforwardclazz = "ion-chevron-right";
-                var arrowdownclazz = "ion-chevron-down";
-                
-                var parentNode = this.parentNode;
-                var id = parentNode.id;
-                console.log(id + "    ---");
-                var childNodes = $("div[parent='" + id + "']");
-                if (this.className.indexOf(arrowforwardclazz) > 0) {
-                    this.className = this.className.replace(arrowforwardclazz, arrowdownclazz);
-                    $(this).css("left", "0px");
-                    childNodes.slideDown(500);
-                } else {
-                    this.className = this.className.replace(arrowdownclazz, arrowforwardclazz);
-                    $(this).css("left", "10px");
-                    childNodes.slideUp(500);
+                for ( var i = 0; i < $childNodes.length; i++) {
+                    var childNode = $childNodes[i];
+                    slideUpChildNode(childNode);
                 }
                 
+                $childNodes.slideUp(500);
+                
+                var iconNode = $(node).find(".icon")[0];
+                if (iconNode != undefined) {
+                    iconNode.className = iconNode.className.replace("ion-chevron-down", "ion-chevron-right");
+                    $(iconNode).css("left", "10px");
+                }
+            }
+            
+            function slideDownChildNode(node) {
+                var $childNodes = $("div[parent='" + node.id + "']");
+                
+                /*
+                for ( var i = 0; i < $childNodes.length; i++) {
+                    var childNode = $childNodes[i];
+                    slideDownChildNode(childNode);
+                }
+                */
+                
+                $childNodes.slideDown(500);
+                
+                var iconNode = $(node).find(".icon")[0];
+                if (iconNode != undefined) {
+                    iconNode.className = iconNode.className.replace("ion-chevron-right", "ion-chevron-down");
+                    $(iconNode).css("left", "0px");
+                }
+                
+            }
+            
+            function slideNodeToggle(node) {
+                
+                var iconNode = $(node).find(".icon")[0];
+                if (iconNode != undefined) {
+                     // slide down
+                    if (iconNode.className.indexOf("ion-chevron-right") > 0) {
+                        slideDownChildNode(node);
+                    } else {
+                        // slide up
+                        slideUpChildNode(node);
+                    }
+                }
+            }
+        
+            $(".tag-line .icon").click(function() {
+                var parentNode = this.parentNode;
+                slideNodeToggle(parentNode);
             });
         
         </script>

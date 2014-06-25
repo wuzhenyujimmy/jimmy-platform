@@ -43,4 +43,8 @@ public final class GsonUtil {
             logger.error("");
         }
     }
+
+    public static String parser(Object o) {
+        return new Gson().toJson(o);
+    }
 }

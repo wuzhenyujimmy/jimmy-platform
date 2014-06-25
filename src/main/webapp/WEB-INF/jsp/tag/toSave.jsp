@@ -48,6 +48,10 @@
         float: left;
         min-width: 100px;
     }
+    
+    .linkAgeTagJson {
+        display: none;
+    }
 </style>
 
 </head>
@@ -64,6 +68,10 @@
         <div class="content">
 
             <form class="tag-form" action="tag/save" method="post">
+            
+                <div class='linkAgeTagJson'>
+                    ${tagInheritJson }
+                </div>
 
                 <div class="line">
                     <div class="label">Parent Tag</div>
@@ -72,10 +80,10 @@
                         <c:choose>
                             <c:when test="${fn:length(tagSequenceMap) > 0 }">
                                 <c:forEach var="tagEntry" items="${tagSequenceMap }" varStatus="status">
-                                    <div class="level${status.index + 1} tag-select" >
+                                    <div >
                                         <c:choose>
                                             <c:when test="${fn:length(tagSequenceMap) ==  status.index + 1}">
-                                                <select name="parentTagId">
+                                                <select name="parentTagId" class="level${status.index + 1} tag-select">
                                                     <c:forEach var="tag" items="${tagEntry.value }">
                                                         <c:choose>
                                                             <c:when test="${tagEntry.key == tag.id }">
@@ -91,7 +99,7 @@
                                              </c:when>
                                              
                                              <c:otherwise>
-                                                <select name="parentTagId">
+                                                <select class="level${status.index + 1} tag-select">
                                                     <c:forEach var="tag" items="${tagEntry.value }">
                                                         <c:choose>
                                                             <c:when test="${tagEntry.key == tag.id }">
@@ -144,6 +152,56 @@
 
         </div>
     </div>
+    
+    <script type="text/javascript">
+    
+        var tagLinkAgeJson = JSON.parse($(".linkAgeTagJson").text());
+        
+        function buildSelectContent(tagId) {
+            
+            
+            var options = "";
+            
+            try {
+                var tagJson = tagLinkAgeJson[tagId];
+                $.each(tagJson, function(key, value) {
+    				var option = "<option value='" + key + "'>" + value + "</div>";
+                    options += option;
+                });
+            } catch (e) {
+                console.log(e.message);
+            }
+            
+            return options;
+        }
+        
+        for(var i = 1; i <= 10; i ++) {
+            var parentSelect = $(".tag-form .level" + i);
+            if (parentSelect.length > 0) {
+                
+                parentSelect.bind("change", function() {
+                    var levelClass = this.className.replace(" tag-select", "");
+                    var levelNum = parseInt(levelClass.replace("level", ""), 10);
+                    var childSelect = $(".tag-form .level" + (levelNum + 1));
+                    
+                    if (childSelect.length > 0 ) {
+                        var options = buildSelectContent(this.value);
+                        
+                        console.log(options +   "   ---");
+                        
+                        if (options.length > 0) {
+                            $(childSelect).show();
+                            $(childSelect).html(options);
+                        } else {
+                            $(childSelect).hide();
+                        }
+                        
+                    }
+                });
+            }
+        }
+    
+    </script>
 
 </body>
 </html>

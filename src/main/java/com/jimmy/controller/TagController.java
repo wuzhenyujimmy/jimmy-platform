@@ -5,6 +5,7 @@ import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -20,6 +21,7 @@ import com.jimmy.base.page.Page;
 import com.jimmy.module.common.Tag;
 import com.jimmy.service.TagService;
 import com.jimmy.util.Constant;
+import com.jimmy.util.GsonUtil;
 
 @Controller
 @RequestMapping("tag")
@@ -28,7 +30,9 @@ public class TagController {
     private static final int FIRST_LEVEL = 1;
 
     private static final String FIRST_LEVEL_MAP_KEY = "";
-
+    
+    private List<Tag> firstLevelTags;
+    
     @Autowired
     TagService tagService;
 
@@ -44,6 +48,8 @@ public class TagController {
             Tag tag = tagService.getEntity(parentTagId);
             request.setAttribute("tagSequenceMap", buildInheritTagSquence(tag));
         }
+
+        request.setAttribute("tagInheritJson", buildTagInheritJson());
 
         return "tag/toSave";
     }
@@ -76,15 +82,15 @@ public class TagController {
             tag.setName(name);
         }
 
-        String redirectUrl = "";
+        String redirectUrl = "redirect:/tag/list";
         if (StringUtils.isEmpty(parentTagId)) {
             tag.setLevel(FIRST_LEVEL);
-            redirectUrl = "redirect:/tag/list";
+            // redirectUrl = "redirect:/tag/list";
         } else {
             parentTag = tagService.getEntity(parentTagId);
             tag.setParent(parentTag);
 
-            redirectUrl = "redirect:/tag/list?parentTagId=" + parentTagId;
+            // redirectUrl = "redirect:/tag/list?parentTagId=" + parentTagId;
         }
 
         tagService.addOrUpdate(tag);
@@ -117,7 +123,7 @@ public class TagController {
         String whereSql = "o.level = 1";
         Tag[] parentTags = null;
         if (!StringUtils.isEmpty(parentTagId)) {
-            whereSql += " and o.parent = ? ";
+            whereSql = "o.parent = ? ";
             parentTags = new Tag[1];
             parentTags[0] = tagService.getEntity(parentTagId);
         }
@@ -154,14 +160,14 @@ public class TagController {
             }
         }
 
-        List<Tag> firstLevelTags = tagService.getFirstLevelTags();
+        List<Tag> firstLevelTags = getFirstLevelTags();
         Map<String, List<Tag>> tagSequenceMap = new HashMap<String, List<Tag>>();
 
         for (int i = 0; i < tagSequence.size(); i++) {
             Tag t = tagSequence.get(i);
 
             if (i == 0) {
-                tagSequenceMap.put(t.getId(), firstLevelTags);
+                tagSequenceMap.put(tagSequence.get(0).getId(), firstLevelTags);
             } else {
 
                 List<Tag> childTagList = new ArrayList<Tag>();
@@ -172,6 +178,35 @@ public class TagController {
         }
 
         return tagSequenceMap;
+    }
+
+    private String buildTagInheritJson() {
+        Map<String, Map<String, String>> map = new HashMap<String, Map<String, String>>();
+        buildTagInheritJson(map, getFirstLevelTags());
+        return GsonUtil.parser(map);
+    }
+
+    private void buildTagInheritJson(Map<String, Map<String, String>> map, List<Tag> tags) {
+
+
+        if (!CollectionUtils.isEmpty(tags)) {
+            for (Tag tag : tags) {
+                Set<Tag> childTags = tag.getChildren();
+
+                if (!CollectionUtils.isEmpty(childTags)) {
+                    Map<String, String> valueMap = new HashMap<String, String>();
+
+                    for (Tag childTag : childTags) {
+                        valueMap.put(childTag.getId(), childTag.getName());
+                    }
+
+                    map.put(tag.getId(), valueMap);
+                    buildTagInheritJson(map, new ArrayList<Tag>(childTags));
+                }
+
+            }
+        }
+
     }
 
     private Map<String, List<Tag>> buildTagTree(List<Tag> firstLevelTags) {
@@ -197,5 +232,12 @@ public class TagController {
                 }
             }
         }
+    }
+
+    private List<Tag> getFirstLevelTags() {
+        if (this.firstLevelTags == null) {
+            return tagService.getFirstLevelTags();
+        }
+        return this.firstLevelTags;
     }
 }
