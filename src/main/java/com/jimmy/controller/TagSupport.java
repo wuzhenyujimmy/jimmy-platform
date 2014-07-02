@@ -11,7 +11,7 @@ import javax.servlet.http.HttpServletRequest;
 import org.springframework.util.CollectionUtils;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import com.jimmy.module.common.Tag;
+import com.jimmy.module.po.Tag;
 
 public abstract class TagSupport {
 

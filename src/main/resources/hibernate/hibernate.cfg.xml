@@ -20,8 +20,9 @@
          -->
         
         <mapping class="com.jimmy.base.common.Article" />
-        <mapping class="com.jimmy.module.dev.DevLog" />
-        <mapping class="com.jimmy.module.common.Tag" />
+        <mapping class="com.jimmy.module.po.DevLog" />
+        <mapping class="com.jimmy.module.po.Tag" />
+        <mapping class="com.jimmy.module.po.Word" />
 
     </session-factory>
 </hibernate-configuration>

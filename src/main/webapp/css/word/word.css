@@ -1,0 +1,348 @@
+body {
+	background-color: #F4F4F4;
+	padding: 0px;
+	margin: 0px;
+}
+
+.head {
+	font-size: 48px;
+	font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+	height: 60px;
+	line-height: 60px;
+	text-align: center;
+	background-image: url("/img/dictionary/dic_head_bg.jpg");
+	color: white;
+}
+
+#content {
+	width: 1106px;
+	margin: 0px auto;
+	min-height: 665px;
+	position: relative;
+}
+
+#view {
+	width: 700px;
+	float: left;
+	margin-top: 5px;
+	position: relative;
+}
+
+#search {
+	float: right;
+	width: 404px;
+	float: left;
+	margin-top: 5px;
+	margin-left: 2px;
+}
+
+#searchTitle {
+	height: 40px;
+	background-color: blue;
+	-webkit-border-top-left-radius: 5px;
+	-webkit-border-top-right-radius: 5px;
+}
+
+.search-word{
+	width: 404px;
+}
+
+#searchContent,.searchBtn {
+	margin-top: 5px;
+	float: left;
+}
+
+#searchContent {
+	height: 26px;
+	width: 300px;
+	line-height: 26px;
+	background-color: white;
+	margin-left: 50px;
+}
+
+.searchBtn {
+	background-image: url("/img/Search.jpg");
+	height: 30px;
+	width: 30px;
+	display: inline-block;
+	cursor: pointer;
+}
+
+#queryTitle {
+	height: 40px;
+	background-color: blue;
+	text-align: center;
+	-webkit-border-top-left-radius: 5px;
+	-webkit-border-top-right-radius: 5px;
+	color: white;
+	line-height: 40px;
+	font-size: 24px;
+	font-weight: bold;
+	position: relative;
+}
+
+#mode{
+	height: 20px;
+	line-height: 20px;
+	margin-top: 5px;
+	padding: 5px;
+	background-color: #27AE60;
+	position: absolute;
+	left: 20px;
+	cursor: pointer;
+}
+
+#mode:HOVER{
+	background-color: #2ECC71;
+}
+
+#queryCondition {
+	width: 80px;
+	height: 30px;
+	float: right;
+	right: 150px;
+	position: absolute;
+	top: 5px;
+}
+
+#addBtn {
+	width: 60px;
+	height: 40px;
+	float: right;
+	right: 20px;
+	cursor: pointer;
+	position: absolute;
+	top: 0px;
+	background-color: #DEDEDE;
+	color: black;
+}
+
+#addBtn:HOVER {
+	background-color: #ECEFF1;
+}
+
+input,textarea {
+	outline: none;
+	text-indent: 5px;
+	height: 20px;
+	font-size: 16px;
+	border: 1px solid #AAAAAA;
+	background: white;
+}
+
+input{
+	display: inline-block;
+}
+
+span {
+	display: inline-block;
+}
+
+.label {
+	width: 70px;
+	text-align: right;
+	float: left;
+	height: 20px;
+}
+
+.textareaLable {
+	height: 100px;
+	line-height: 100px;
+}
+
+#wordInput,#meanInput {
+	width: 300px;
+}
+
+textarea {
+	width: 296px;
+	resize: none;
+	height: 100px;
+}
+
+#add input:FOCUS,#add textarea:FOCUS {
+	border-color: #1ABC9C;
+	-webkit-border-radius: 5px;
+	border-width: 2px;
+}
+
+#add {
+	width: 375px;
+	position: absolute;
+	top: 45px;
+	left: 500px;
+	-webkit-border-bottom-left-radius: 5px;
+	-webkit-border-bottom-right-radius: 5px;
+	display: none;
+	padding: 5px;
+	border: 1px solid #BABABA;
+	-webkit-box-shadow: rgb(110, 110, 110) 4px 4px 4px;
+	background-color: #ECEFF1;
+}
+
+.title {
+	height: 20px;
+	line-height: 20px;
+	font-size: 20px;
+}
+
+#add div {
+	margin-top: 2px;
+	text-align: center;
+}
+
+.operateSuccess{
+	padding: 5px;
+	-webkit-border-radius: 10px;
+	background: -webkit-linear-gradient(#48AD48,#5ADB55,#4DB849); 
+}
+
+.submit,.reset {
+	height: 40px;
+	width: 110px;
+	line-height: 40px;
+	color: white;
+	cursor: pointer;
+	-webkit-border-radius: 5px;
+}
+
+.submit {
+	background-color: #27AE60;
+	margin-left: 70px;
+}
+
+.submit:HOVER {
+	background-color: #2ECC71;
+}
+
+.reset {
+	background-color: #16A085;
+}
+
+.reset:HOVER {
+	background-color: #1ABC9C;
+}
+
+/* view words section */
+
+.word-show{
+	cursor: pointer;
+}
+
+.en,.ch,.eg,.status {
+	height: 30px;
+	float: left;
+	line-height: 30px;
+	overflow: hidden;
+	background-color: white;
+}
+
+.en,.ch,.eg{
+	border: 1px solid gray;
+}
+
+.ch,.eg{
+	border-left: 0px;
+}
+
+.en,.ch {
+	width: 200px;
+}
+
+.eg {
+	width: 216px;
+}
+
+.status {
+	width: 80px;
+}
+
+/* word status */
+select {
+	outline: none;
+}
+
+.new,.know,.familiar,.master {
+	color: white;
+}
+
+.new {
+	background-color: #1ABC9C;
+}
+
+.know {
+	background-color: #2ECC71;
+}
+
+.familiar {
+	background-color: #F39C12;
+}
+
+.master {
+	background-color: #E74C3C;
+}
+
+#chPopUp {
+	text-align: center;
+	height: 24px;
+	line-height: 24px;
+	position: absolute;
+	padding: 5px;
+	-webkit-border-radius: 5px;
+	min-width: 190px;
+	display: none;
+	z-index: 100;
+	cursor: text;
+}
+
+#egPopUp{
+	max-height: 150px;
+	min-width: 200px;
+	max-width: 600px;
+	position: absolute;
+	-webkit-border-radius: 5px;
+	z-index: 200;
+	display: none;
+}
+
+#egContent{
+	padding: 5px;
+}
+
+.tooltip-arrow {
+	border-color: transparent;
+	border-top-color: #0000FF;
+	border-width: 9px 9px 0px;
+	margin-left: -9px;
+	bottom: -9px;
+	position: absolute;
+	border-style: solid;
+	background-color: transparent;
+	left: 50%;
+}
+
+/* may be the general css design */
+.infoSpan {
+	-webkit-border-radius: 10px;
+	background-color: #2ECC71;
+	color: white;
+	height: 30px;
+	line-height: 30px;
+	text-align: center;
+	width: 200px;
+	font-size: 16px;
+}
+
+.infoDiv {
+	height: 30px;
+}
+
+.root {
+	height: 80px;
+	text-align: center;
+	line-height: 80px;
+	width: 1100px;
+	background-color: #0A0949;
+	color: white;
+}
+/* elements dragging */

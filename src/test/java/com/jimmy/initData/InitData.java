@@ -6,7 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
-import com.jimmy.module.dev.DevLog;
+import com.jimmy.module.po.DevLog;
 import com.jimmy.service.DevLogService;
 import com.jimmy.service.TagService;
 import com.jimmy.web.taglib.TreeTag;

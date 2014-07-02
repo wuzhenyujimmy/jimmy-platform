@@ -4,7 +4,7 @@ import java.util.List;
 import java.util.Set;
 
 import com.jimmy.base.db.BaseDao;
-import com.jimmy.module.common.Tag;
+import com.jimmy.module.po.Tag;
 
 public interface TagService extends BaseDao<Tag> {
 

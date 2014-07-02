@@ -36,7 +36,7 @@
                 <c:out value="${index }">下一页</c:out>
             </a>
             <a class="nextLink" href="${page.baseUrl }?currentPageIndex=${page.totalPageCount}">
-               <c:out value="${index }">最后一页</c:out>
+               <c:out value="${index }">最末页</c:out>
             </a>
         </c:if>
         

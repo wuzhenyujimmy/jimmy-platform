@@ -11,7 +11,7 @@ import org.springframework.util.CollectionUtils;
 
 import com.jimmy.base.db.DaoSupport;
 import com.jimmy.base.page.Page;
-import com.jimmy.module.common.Tag;
+import com.jimmy.module.po.Tag;
 import com.jimmy.service.TagService;
 import com.jimmy.util.Constant;
 

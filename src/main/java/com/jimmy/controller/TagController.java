@@ -18,7 +18,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.jimmy.base.page.Page;
-import com.jimmy.module.common.Tag;
+import com.jimmy.module.po.Tag;
 import com.jimmy.service.TagService;
 import com.jimmy.util.Constant;
 import com.jimmy.util.GsonUtil;

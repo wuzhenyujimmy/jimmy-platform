@@ -4,7 +4,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.jimmy.base.db.DaoSupport;
-import com.jimmy.module.dev.DevLog;
+import com.jimmy.module.po.DevLog;
 import com.jimmy.service.DevLogService;
 
 @Service

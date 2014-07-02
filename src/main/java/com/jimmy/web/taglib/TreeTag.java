@@ -6,7 +6,7 @@ import java.util.Set;
 
 import org.springframework.util.CollectionUtils;
 
-import com.jimmy.module.common.Tag;
+import com.jimmy.module.po.Tag;
 
 public class TreeTag extends BaseFlatUITag {
 
