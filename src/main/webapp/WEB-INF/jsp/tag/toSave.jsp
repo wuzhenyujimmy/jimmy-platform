@@ -37,10 +37,10 @@
     
     .tag-form .value,.tag-form .submitBtn {
         float: left;
-        width: 400px;
+        width: 800px;
     }
     
-    .tag-form .value {
+    .tag-form .value select {
         margin-left: 10px;
     }
     
@@ -159,7 +159,6 @@
         
         function buildSelectContent(tagId) {
             
-            
             var options = "";
             
             try {
@@ -186,8 +185,6 @@
                     
                     if (childSelect.length > 0 ) {
                         var options = buildSelectContent(this.value);
-                        
-                        console.log(options +   "   ---");
                         
                         if (options.length > 0) {
                             $(childSelect).show();

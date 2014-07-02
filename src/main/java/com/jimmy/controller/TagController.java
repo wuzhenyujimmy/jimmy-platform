@@ -54,6 +54,25 @@ public class TagController {
         return "tag/toSave";
     }
 
+    @RequestMapping("treejson")
+    public void getTagInheritJson(HttpServletResponse response) {
+
+        Map<String, Map<String, String>> map = new HashMap<String, Map<String, String>>();
+
+        List<Tag> firstLevelTags = getFirstLevelTags();
+
+        Map<String, String> valueMap = new HashMap<String, String>();
+        for (Tag tag : firstLevelTags) {
+            valueMap.put(tag.getId(), tag.getName());
+        }
+
+        map.put("", valueMap);
+
+        buildTagInheritJson(map, getFirstLevelTags());
+
+        GsonUtil.writeObjectJson(map, response);
+    }
+
     @RequestMapping("toupdate")
     public String toUpdate(String id, HttpServletRequest request) {
 
@@ -135,6 +154,13 @@ public class TagController {
         return "tag/list";
     }
 
+    /**
+     * Build tag sequence for current selected tag, which is first level tag,
+     * next tag, next tag ..., current tag.
+     * 
+     * @param tag
+     * @return
+     */
     private Map<String, List<Tag>> buildInheritTagSquence(Tag tag) {
 
         List<Tag> tagSequence = new ArrayList<Tag>();
@@ -180,6 +206,12 @@ public class TagController {
         return tagSequenceMap;
     }
 
+    /**
+     * Build inherit tag json for linkage select. When choose another parent
+     * tag, show its child tags accordingly in the next select area.
+     * 
+     * @return
+     */
     private String buildTagInheritJson() {
         Map<String, Map<String, String>> map = new HashMap<String, Map<String, String>>();
         buildTagInheritJson(map, getFirstLevelTags());
@@ -187,7 +219,6 @@ public class TagController {
     }
 
     private void buildTagInheritJson(Map<String, Map<String, String>> map, List<Tag> tags) {
-
 
         if (!CollectionUtils.isEmpty(tags)) {
             for (Tag tag : tags) {
@@ -240,4 +271,5 @@ public class TagController {
         }
         return this.firstLevelTags;
     }
+
 }

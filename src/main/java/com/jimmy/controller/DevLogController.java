@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import com.jimmy.base.common.Article;
 import com.jimmy.base.common.EntityStatus;
 import com.jimmy.base.page.Page;
+import com.jimmy.module.common.Tag;
 import com.jimmy.module.dev.DevLog;
 import com.jimmy.service.DevLogService;
 import com.jimmy.util.Constant;
@@ -21,7 +22,7 @@ import com.jimmy.util.GsonUtil;
 
 @Controller
 @RequestMapping("devlog")
-public class DevLogController {
+public class DevLogController extends TagSupport {
     @Autowired
     DevLogService devLogService;
 
@@ -75,4 +76,9 @@ public class DevLogController {
         return "devlog/list";
     }
 
+    public String searchByTag(Tag tag) {
+
+
+        return null;
+    }
 }
