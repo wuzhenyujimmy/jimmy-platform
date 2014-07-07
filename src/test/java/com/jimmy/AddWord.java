@@ -38,14 +38,14 @@ public class AddWord {
 
             while (!(StringUtils.isEmpty(context = bufferedReader.readLine()))) {
 
-                String[] strs = context.trim().split("#");
+                String[] strs = context.trim().replaceAll("\\t", " ").replaceFirst(" ", "#").split("#");
 
                 String example = "";
                 if (strs.length == 3) {
                     example = strs[2];
                 }
 
-                Word entity = new Word(strs[0], strs[1], example);
+                Word entity = new Word(strs[0].trim(), strs[1].trim(), example.trim());
                 wordService.add(entity);
             }
 

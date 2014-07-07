@@ -23,6 +23,7 @@ function save(entity) {
     $.post(entity.url, {
         "id" : entity.id,
         "title" : title,
+        "title" : title,
         "htmlContent" : htmlContent
     }, function(redirectUrl) {
         location.href = redirectUrl;

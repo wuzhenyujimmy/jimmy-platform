@@ -17,6 +17,7 @@ import com.jimmy.base.page.Page;
 import com.jimmy.module.po.DevLog;
 import com.jimmy.module.po.Tag;
 import com.jimmy.service.DevLogService;
+import com.jimmy.service.TagService;
 import com.jimmy.util.Constant;
 import com.jimmy.util.GsonUtil;
 
@@ -26,13 +27,20 @@ public class DevLogController extends TagSupport {
     @Autowired
     DevLogService devLogService;
 
+    @Autowired
+    TagService tagService;
+
     @RequestMapping("/save")
     public String save(@RequestParam(required = false) String id, @RequestParam String title,
-                    @RequestParam String htmlContent, HttpServletResponse response) {
+            @RequestParam String htmlContent, @RequestParam String tagId, HttpServletResponse response) {
+
+        Tag tag = tagService.getEntity(tagId);
 
         if (StringUtils.isEmpty(id)) {
             Article article = new Article(title, htmlContent);
             DevLog entity = new DevLog(article, EntityStatus.NEW);
+
+            entity.setTag(tag);
 
             devLogService.add(entity);
         } else {
@@ -41,6 +49,9 @@ public class DevLogController extends TagSupport {
             Article article = entity.getArticle();
             article.setHtmlContent(htmlContent);
             article.setTitle(title);
+
+            entity.setTag(tag);
+            entity.setArticle(article);
 
             devLogService.update(entity);
         }

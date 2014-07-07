@@ -49,6 +49,7 @@
                 </c:forEach>
                 
                 <jsp:include page="../common/page.jsp"></jsp:include>
+                
                 <jsp:include page="../common/slider.jsp"></jsp:include>
                 
             </div>
