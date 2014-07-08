@@ -110,3 +110,17 @@
 }
 
 /***************  Button end ****************/
+
+/***************  Search Start ****************/
+.search .s-input {
+    height: 40px;
+    width: 400px;
+    border: 1px solid gray;
+    font-size: 16px;
+}
+.search .s-submit {
+    height: 40px;
+    width: 80px;
+    margin-left: -10px;
+}
+/***************  Search end ****************/
